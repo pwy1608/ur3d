@@ -1,4 +1,5 @@
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900");
+@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville:400);
 @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 @import url("http://fonts.googleapis.com/earlyaccess/kopubbatang.css");
 @import url("font-awesome.min.css");
@@ -1907,6 +1908,13 @@
             font-family: 'Source Sans Pro', sans-serif;
 		}
 		
+		header div h3 {
+			font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+			margin: 0 0 0.2em 0;
+			color: #39454b;
+		}
+		
 		header h2, h3, h4, h6 {
             margin: 0 0 0.2em 0;
 			color: #39454b;
@@ -2203,6 +2211,12 @@
 
 			.main.style1 h2 {
 				font-size: 4em;
+				line-height: 1em;
+				letter-spacing: -4px;
+			}
+
+            .main.style1 h3 {
+				font-size: 2.5em;
 				line-height: 1em;
 				letter-spacing: -4px;
 			}
@@ -3500,3 +3514,26 @@
 	#float-icons li a#top_arrow {
 		background: url("/images/logos/top_arrow2.png") no-repeat;
 	}
+
+
+    #angleDown {
+        font-size: 35px;
+        color: #39454b;
+        /*width: 50px;
+        line-height: 52px;
+        border-radius: 50%;
+        height: 50px;
+        border: 1px solid #39454b;*/
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        /*z-index: 1029;*/
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+        opacity: .9;
+    }
