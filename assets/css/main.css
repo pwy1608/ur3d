@@ -1938,6 +1938,10 @@
 		margin-bottom: 3em;
 	}
 
+    section a i {
+        align-items: baseline;
+    }
+
 	section > :last-child,
 	article > :last-child,
 	section > .content > :last-child,
