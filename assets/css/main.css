@@ -4,6 +4,11 @@
 @import url("http://fonts.googleapis.com/earlyaccess/kopubbatang.css");
 @import url("font-awesome.min.css");
 
+	::selection {
+		background: #3fb4ac;
+		color: #fff;
+		text-shadow: none;
+	}
 
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 		margin: 0;
@@ -1880,7 +1885,7 @@
 		margin-bottom: 0.5em;
 		width: 8%;
 	}
-	
+
 /* blockquote */
 
 	blockquote {
@@ -1907,14 +1912,14 @@
 			margin: 0 0 0 0;
             font-family: 'Source Sans Pro', sans-serif;
 		}
-		
+
 		header div h3 {
 			font-family: 'Libre Baskerville', serif;
             font-style: italic;
 			margin: 0 0 0.2em 0;
 			color: #39454b;
 		}
-		
+
 		header h2, h3, h4, h6 {
             margin: 0 0 0.2em 0;
 			color: #39454b;
@@ -2101,7 +2106,7 @@
 		text-align: center;
 		text-decoration: none;
 	}
-	
+
 		input[type="button"].down,
 		input[type="submit"].down,
 		input[type="reset"].down,
@@ -2768,9 +2773,9 @@
 		box-shadow: 0 0 0.15em 0 rgba(0, 0, 0, 0.1);
 	}
 
-	
+
 /* 로고 */
-	
+
 	#logo {
 		position: absolute;
 		left: 1em;
@@ -2783,7 +2788,7 @@
 		#logo a {
 			font-size: 1.25em;
 		}
-		
+
 /* 상단 네비게이션 right margin set */
 
 	#nav {
@@ -2819,7 +2824,7 @@
 	#header {
 		background: rgba(255, 255, 255, 0.8)
 	}
-	
+
 		#header a:hover {
 			color: #39454b;
 			opacity: 0.3;
@@ -2828,7 +2833,7 @@
 /* about */
 
 	#about {
-		background: #ffffff; 
+		background: #ffffff;
 		/* url("images/overlay.png"), url("../../images/one.jpg"); */
 		font-family: kopubBatang;
 	}
@@ -2885,7 +2890,7 @@
 		padding-bottom: 0;
 		overflow: hidden;
 	}
-	
+
 /* contact box 애니메이션 deactivate
 		#contact .box {
 			animation-direction: reverse;
@@ -3147,7 +3152,7 @@
 			body, input, textarea, select {
 				font-size: 17pt;
 			}
-			
+
 			blockquote, header blockquote {
 				font-size: 13pt;
 			}
@@ -3177,7 +3182,7 @@
 			body, input, textarea, select {
 				font-size: 15pt;
 			}
-			
+
 			blockquote, header blockquote {
 				font-size: 1em;
 			}
@@ -3193,26 +3198,26 @@
 			body, input, textarea, select {
 				font-size: 13pt;
 			}
-			
+
 			blockquote, blockquote p {
 				font-size: 1em;
 			}
-			
+
 			h2 {
 				font-size: 3em;
 			}
-			
+
 			h3 {
 				font-size: 1em;
 			}
-			
+
 			p {
 				font-size: 1.2em;
 				line-height: 1.5em;
 			}
 
 		/* Main */
-			
+
             .main.style1.fullscreen {
                 height: 100%;
             }
@@ -3224,7 +3229,7 @@
 			.main.style2:before, .main.style2:after {
 				display: none !important;
 			}
-				
+
 			.main.style2 .content {
 				width: 50%;
 			}
@@ -3248,7 +3253,7 @@
 			body, input, textarea, select {
 				font-size: 13pt;
 			}
-			
+
 			blockquote, header blockquote {
 				font-size: 1.2em;
 			}
@@ -3256,22 +3261,22 @@
 			.container > .container {
 				width: 100% !important;
 			}
-			
+
 			h2 {
 				font-size: 3em;
 			}
-			
+
 			h3 {
 				font-size: 1.4em;
 			}
-			
+
 			p {
 				font-size: 1.2em;
 				line-height: 1.5em;
 			}
 
 		/* Main */
-            
+
             .main.style1.fullscreen {
                 height: 100%;
             }
@@ -3283,7 +3288,7 @@
 			.main.style2:before, .main.style2:after {
 				display: none !important;
 			}
-			
+
 			.main.style2 .content {
 				width: 60%;
 			}
@@ -3295,7 +3300,7 @@
 			.main.style2.inactive.left .content {
 				left: -60%;
 			}
-		
+
 		/* Footer */
 
 			#footer {
@@ -3346,7 +3351,7 @@
 				font-size: 12pt;
 				line-height: 1.5em;
 			}
-			
+
 			blockquote, header blockquote {
 				font-size: 10pt;
 			}
@@ -3488,19 +3493,19 @@
 		top: 87%;
 		right: 3%;
 	}
-	
+
 	#float-icons {
 		background: transparent;
 		margin: 0;
 		padding: 0;
 		width: 100%;
 	}
-	
+
 	#float-icons li {
 		float: left;
 		list-style-type: none;
 	}
-	
+
 	#float-icons a {
 		display: block;
 		margin: 0 0;
@@ -3510,11 +3515,11 @@
 		text-indent:-9999px;
 		opacity: 0.15;
 	}
-	
+
 	#float-icons a:hover {
 		opacity: 0.35;
 	}
-	
+
 	#float-icons li a#top_arrow {
 		background: url("/images/logos/top_arrow2.png") no-repeat;
 	}
