@@ -272,23 +272,15 @@ function autoType(elementClass, typingSpeed) {
             });
         });
 
-  var i=1;
+  //var i=1;
 
 	 function scrollAuto(){
-  	if(i == 2){
-        //$(function(){$("body").scroll(function(){$(this).css("background","white").css("logo","black").css("nav","black")})})
 
-        location.href = document.getElementsByTagName('a')[1].href;
-
-		    i=1;
-
-		}else{
-      //$(function(){$("body").scroll(function(){$(this).css("background","black").css("color","white")})})
-
+      window.clearTimeout(resizeTimeout);
       location.href = document.getElementsByTagName('a')[2].href;
 
-      i++;
-		}
+
+
 	}
 
 
