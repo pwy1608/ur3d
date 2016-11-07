@@ -17,6 +17,7 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+		position: relative;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -2832,6 +2833,7 @@
 
 /* about */
 
+
 	#about {
 		background: #ffffff;
 		/* url("images/overlay.png"), url("../../images/one.jpg"); */
@@ -2849,6 +2851,8 @@
 	}
 
 /* Work */
+
+
 
 	#work .row.images .image {
 		-moz-transition: all 0.5s ease;
