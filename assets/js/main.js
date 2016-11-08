@@ -1,4 +1,3 @@
-
 // Auto type effect at index Page
 
 function autoType(elementClass, typingSpeed) {
@@ -16,13 +15,13 @@ function autoType(elementClass, typingSpeed) {
     var newString = "";
     thhis.text("|");
 
-    setTimeout(function () {
+    setTimeout(function() {
         thhis.css("opacity", 1);
         thhis.prev().removeAttr("style");
         thhis.text("");
         for (var i = 0; i < amntOfChars; i++) {
-            (function (i, char) {
-                setTimeout(function () {
+            (function(i, char) {
+                setTimeout(function() {
                     newString += char;
                     thhis.text(newString);
                 }, i * typingSpeed);
@@ -32,7 +31,7 @@ function autoType(elementClass, typingSpeed) {
 
 }
 
-(function ($) {
+(function($) {
 
     skel.breakpoints({
         wide: '(max-width: 1920px)',
@@ -43,24 +42,24 @@ function autoType(elementClass, typingSpeed) {
         mobilenarrow: '(max-width: 480px)',
     });
 
-    $(function () {
+    $(function() {
 
         var $window = $(window),
-			$body = $('body'),
-			$header = $('#header'),
-			$all = $body.add($header);
+            $body = $('body'),
+            $header = $('#header'),
+            $all = $body.add($header);
 
         // Disable animations/transitions until the page has loaded.
         $body.addClass('is-loading');
 
-        $window.on('load', function () {
-            window.setTimeout(function () {
+        $window.on('load', function() {
+            window.setTimeout(function() {
                 $body.removeClass('is-loading');
             }, 0);
         });
 
         // 터치 mode.
-        skel.on('change', function () {
+        skel.on('change', function() {
 
             if (skel.vars.mobile || skel.breakpoint('mobile').active)
                 $body.addClass('is-touch');
@@ -73,7 +72,7 @@ function autoType(elementClass, typingSpeed) {
         $('form').placeholder();
 
         // Prioritize "important" elements on mobile.
-        skel.on('+mobile -mobile', function () {
+        skel.on('+mobile -mobile', function() {
             $.prioritize(
                 '.important\\28 mobile\\29',
                 skel.breakpoint('mobile').active
@@ -85,7 +84,7 @@ function autoType(elementClass, typingSpeed) {
             $(':last-child').addClass('last-child');
 
         // gallery.
-        $window.on('load', function () {
+        $window.on('load', function() {
             $('.gallery').poptrox({
                 baseZIndex: 10001,
                 useBodyOverflow: false,
@@ -101,30 +100,46 @@ function autoType(elementClass, typingSpeed) {
         });
 
         // Section transitions.
-        if (!skel.vars.mobile
-        && skel.canUse('transition')) {
+        if (!skel.vars.mobile &&
+            skel.canUse('transition')) {
 
-            var on = function () {
+            var on = function() {
 
                 // Generic sections.
                 $('.main.style1')
                     .scrollex({
                         mode: 'middle',
                         delay: 10,
-                        initialize: function () { $(this).addClass('inactive'); },
-                        terminate: function () { $(this).removeClass('inactive'); },
-                        enter: function () { $(this).removeClass('inactive'); },
-                        leave: function () { $(this).addClass('inactive'); }
+                        initialize: function() {
+                            $(this).addClass('inactive');
+                        },
+                        terminate: function() {
+                            $(this).removeClass('inactive');
+                        },
+                        enter: function() {
+                            $(this).removeClass('inactive');
+                        },
+                        leave: function() {
+                            $(this).addClass('inactive');
+                        }
                     });
 
                 $('.main.style2')
                     .scrollex({
                         mode: 'middle',
                         delay: 10,
-                        initialize: function () { $(this).addClass('inactive'); },
-                        terminate: function () { $(this).removeClass('inactive'); },
-                        enter: function () { $(this).removeClass('inactive'); },
-                        leave: function () { $(this).addClass('inactive'); }
+                        initialize: function() {
+                            $(this).addClass('inactive');
+                        },
+                        terminate: function() {
+                            $(this).removeClass('inactive');
+                        },
+                        enter: function() {
+                            $(this).removeClass('inactive');
+                        },
+                        leave: function() {
+                            $(this).addClass('inactive');
+                        }
                     });
 
                 // Work.
@@ -133,7 +148,7 @@ function autoType(elementClass, typingSpeed) {
                         top: '40vh',
                         bottom: '30vh',
                         delay: 10,
-                        initialize: function () {
+                        initialize: function() {
 
                             var t = $(this);
 
@@ -141,7 +156,7 @@ function autoType(elementClass, typingSpeed) {
                                 .addClass('inactive');
 
                         },
-                        terminate: function () {
+                        terminate: function() {
 
                             var t = $(this);
 
@@ -149,31 +164,31 @@ function autoType(elementClass, typingSpeed) {
                                 .removeClass('inactive');
 
                         },
-                        enter: function () {
+                        enter: function() {
 
                             var t = $(this),
                                 rows = t.find('.row.images'),
                                 length = rows.length,
                                 n = 0;
 
-                            rows.each(function () {
+                            rows.each(function() {
                                 var row = $(this);
-                                window.setTimeout(function () {
+                                window.setTimeout(function() {
                                     row.removeClass('inactive');
                                 }, 100 * (length - n++));
                             });
 
                         },
-                        leave: function (t) {
+                        leave: function(t) {
 
                             var t = $(this),
                                 rows = t.find('.row.images'),
                                 length = rows.length,
                                 n = 0;
 
-                            rows.each(function () {
+                            rows.each(function() {
                                 var row = $(this);
-                                window.setTimeout(function () {
+                                window.setTimeout(function() {
                                     row.addClass('inactive');
                                 }, 100 * (length - n++));
                             });
@@ -186,15 +201,23 @@ function autoType(elementClass, typingSpeed) {
                     .scrollex({
                         top: '50%',
                         delay: 10,
-                        initialize: function () { $(this).addClass('inactive'); },
-                        terminate: function () { $(this).removeClass('inactive'); },
-                        enter: function () { $(this).removeClass('inactive'); },
-                        leave: function () { $(this).addClass('inactive'); }
+                        initialize: function() {
+                            $(this).addClass('inactive');
+                        },
+                        terminate: function() {
+                            $(this).removeClass('inactive');
+                        },
+                        enter: function() {
+                            $(this).removeClass('inactive');
+                        },
+                        leave: function() {
+                            $(this).addClass('inactive');
+                        }
                     });
 
             };
 
-            var off = function () {
+            var off = function() {
 
                 // Generic sections.
                 $('.main.style1')
@@ -213,12 +236,12 @@ function autoType(elementClass, typingSpeed) {
 
             };
 
-            skel.on('change', function () {
+            skel.on('change', function() {
 
                 if (skel.breakpoint('mobile').active)
                     (off)();
                 else
-						(on)();
+                    (on)();
 
             });
 
@@ -228,14 +251,14 @@ function autoType(elementClass, typingSpeed) {
         var resizeTimeout, resizeScrollTimeout;
 
         $window
-            .resize(function () {
+            .resize(function() {
 
                 // animations/transitions 비활성화.
                 $body.addClass('is-resizing');
 
                 window.clearTimeout(resizeTimeout);
 
-                resizeTimeout = window.setTimeout(function () {
+                resizeTimeout = window.setTimeout(function() {
 
                     // Scroll Speed & Update 라인. (변경 전, 800 이었음.)
                     $('a[href^=#]').scrolly({
@@ -244,7 +267,7 @@ function autoType(elementClass, typingSpeed) {
                     });
 
                     // Re-enable animations/transitions.
-                    window.setTimeout(function () {
+                    window.setTimeout(function() {
                         $body.removeClass('is-resizing');
                         $window.trigger('scroll');
                     }, 0);
@@ -252,39 +275,38 @@ function autoType(elementClass, typingSpeed) {
                 }, 100);
 
             })
-            .load(function () {
+            .load(function() {
                 $window.trigger('resize');
             });
 
 
         // float icon: go to top control
 
-        $(function () {
-            $(window).scroll(function () {
+        $(function() {
+            $(window).scroll(function() {
                 if ($(this).scrollTop() > 540)
                     $('#float-icons').fadeIn();
                 else
                     $('#float-icons').fadeOut();
             });
 
-            $('#float-icons').click(function () {
-                $('body,html').animate({ scrollTop: 0 }, 600);
+            $('#float-icons').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 600);
             });
         });
 
-  //var i=1;
 
-	 function scrollAuto(){
+        function scrollAuto() {
 
-      window.clearTimeout(resizeTimeout);
-      location.href = document.getElementsByTagName('a')[2].href;
+            window.clearTimeout(resizeTimeout);
+            location.href = document.getElementsByTagName('a')[2].href;
 
-
-
-	}
+        }
 
 
-    window.onload = timer = setInterval(scrollAuto,6000);
+        window.onload = timer = setInterval(scrollAuto, 6000);
 
 
 
