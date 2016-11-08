@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>three.js - Won Young</title>
+    <!-- <title>three.js - Won Young</title> -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 </head>
 <body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>
-    <script src="../build/three.js"></script>
-
-    <script src="../examples/js/loaders/PLYLoader.js"></script>
-    <script src="../examples/js/controls/TrackballControls.js"></script>
-    <script src="../examples/js/Detector.js"></script>
-    <script src="../examples/js/libs/stats.min.js"></script>
-    <script src="../examples/js/controls/OrbitControls.js"></script>
+    <script src="assets/js/PLYLoader.js"></script>
+  	<script src="assets/js/TrackballControls.js"></script>
+  	<script src="assets/js/Detector.js"></script>
+  	<script src="assets/js/stats.min.js"></script>
+  	<script src="assets/js/OrbitControls.js"></script>
 
     <script>
 
@@ -125,8 +123,6 @@
             // resize
 
             window.addEventListener('resize', onWindowResize, false);
-            //window.addEventListener('mousedown', onMouseDown);
-            //window.addEventListener('mouseup', onMouseUp);
 
         }
 
@@ -162,14 +158,6 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
 
         }
-
-        //function onMouseDown() {
-        //    isMouseDown = true;
-        //}
-
-        //function onMouseUp() {
-        //    isMouseDown = false;
-        //}
 
         function animate() {
 
