@@ -9,8 +9,7 @@
         margin: 0;
         padding: 0;
         border: 0;
-        overflow-x: hidden;
-        overflow-y: hidden;
+        overflow: hidden;
       }
     </style>
 </head>
@@ -68,24 +67,6 @@
             // PLY file
 
             var loader = new THREE.PLYLoader();
-            loader.load('./models/ply/dolphins.ply', function (geometry) {
-
-                geometry.computeVertexNormals();
-
-                var material = new THREE.MeshStandardMaterial({ color: 0x0055ff, shading: THREE.FlatShading });
-                var mesh = new THREE.Mesh(geometry, material);
-
-                mesh.position.y = -0.2;
-                mesh.position.z = 0.3;
-                mesh.rotation.x = -Math.PI / 2;
-                mesh.scale.multiplyScalar(0.001);
-
-                mesh.castShadow = true;
-                mesh.receiveShadow = true;
-
-                scene.add(mesh);
-
-            });
 
             loader.load('./models/ply/Lucy100k.ply', function (geometry) {
 
