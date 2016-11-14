@@ -55,7 +55,7 @@
             // Ground
 
             var tLoader = new THREE.TextureLoader();
-            var planeTexture = loader.load('/images/marble_grid.jpg');
+            var planeTexture = loader.load('./images/marble_grid.jpg');
             planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
             planeTexture.repeat.set( 15, 15 );
             planeTexture.anisotropy = 16;
@@ -91,12 +91,15 @@
                 mesh.position.y = -0.14;
                 mesh.position.z = -0.3;
                 mesh.rotation.x = -Math.PI / 2;
-                mesh.scale.multiplyScalar(0.0006);
+                mesh.scale.multiplyScalar(0.0006);  // ply Scalar Magnify
 
                 mesh.castShadow = true;
                 mesh.receiveShadow = true;
 
                 scene.add(mesh);
+
+                var box = new THREE.Box3().setFromObject( mesh );
+                console.log( box.min, box.max, box.size() );
 
             });
 
