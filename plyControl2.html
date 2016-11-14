@@ -56,13 +56,13 @@
 
             var planeTexture = loader.load('/images/grass.jpg');
             planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
-            planeTexture.repeat.set( 25, 25 );
-            planeTexture.anisotropy = 16;
+            // planeTexture.repeat.set( 25, 25 );
+            // planeTexture.anisotropy = 16;
 
             var plane = new THREE.Mesh(
                 new THREE.PlaneBufferGeometry(20000, 20000),
                 new THREE.MeshPhongMaterial({ color: 0xffffff, specular: 0x111111, map: planeTexture })
-            );    
+            );
 
             plane.rotation.x = -Math.PI / 2;
             plane.position.y = -250;
