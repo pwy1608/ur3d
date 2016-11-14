@@ -49,23 +49,24 @@
             cameraTarget = new THREE.Vector3(0, -0.1, 0);
 
             scene = new THREE.Scene();
-            scene.fog = new THREE.Fog(0x72645b, 2, 15);
+            scene.fog = new THREE.Fog(0xfbfbfb, 2, 15);
 
 
             // Ground
 
-            var planeTexture = loader.load('/images/grass.jpg');
+            var tLoader = new THREE.TextureLoader();
+            var planeTexture = loader.load('/images/marble_grid.jpg');
             planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
-            // planeTexture.repeat.set( 25, 25 );
-            // planeTexture.anisotropy = 16;
+            planeTexture.repeat.set( 15, 15 );
+            planeTexture.anisotropy = 16;
 
             var plane = new THREE.Mesh(
                 new THREE.PlaneBufferGeometry(20000, 20000),
-                new THREE.MeshPhongMaterial({ color: 0xffffff, specular: 0x111111, map: planeTexture })
+                new THREE.MeshPhongMaterial({ color: 0x999999, specular: 0x101010, map: planeTexture })
             );
 
             plane.rotation.x = -Math.PI / 2;
-            plane.position.y = -250;
+            plane.position.y = -0.5;
             plane.receiveShadow = true;
             scene.add(plane);
 
@@ -78,7 +79,12 @@
 
                 geometry.computeVertexNormals();
 
-                var material = new THREE.MeshStandardMaterial({ color: 0x0055ff, shading: THREE.FlatShading });
+                // var materialTexture = tLoader.load('cast-texture.jpg');
+                // materialTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
+                // materialTexture.repeat.set( 50, 50 );
+                // planeTexture.anisotropy = 16;
+
+                var material = new THREE.MeshStandardMaterial({ color: 0xececec, shading: THREE.FlatShading });
                 var mesh = new THREE.Mesh(geometry, material);
 
                 mesh.position.x = -0.4;
@@ -99,7 +105,7 @@
             scene.add(new THREE.HemisphereLight(0x443333, 0x111122));
 
             addShadowedLight(1, 1, 1, 0xffffff, 1.35);
-            addShadowedLight(0.5, 1, -1, 0xffaa00, 1);
+            addShadowedLight(0.5, 1, -1, 0xfff1e0, 1);
 
             // renderer
 
@@ -161,7 +167,6 @@
 
             render();
             controls.update();
-            stats.update();
 
         }
 
