@@ -55,7 +55,7 @@
             // Ground
 
             var tLoader = new THREE.TextureLoader();
-            var planeTexture = loader.load('./images/marble_grid.jpg');
+            var planeTexture = tLoader.load('./images/marble_grid.jpg');
             planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
             planeTexture.repeat.set( 15, 15 );
             planeTexture.anisotropy = 16;
