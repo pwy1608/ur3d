@@ -7,7 +7,7 @@ function autoType(elementClass, typingSpeed) {
         "position": "relative",
         "display": "inline-block"
     });
-    thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+    
     thhis = thhis.find(".text-js");
 
     var text = thhis.text().trim().split('');
