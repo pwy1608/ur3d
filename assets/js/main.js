@@ -7,7 +7,7 @@ function autoType(elementClass, typingSpeed) {
         "position": "relative",
         "display": "inline-block"
     });
-    
+    thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
     thhis = thhis.find(".text-js");
 
     var text = thhis.text().trim().split('');
@@ -27,8 +27,13 @@ function autoType(elementClass, typingSpeed) {
                 }, i * typingSpeed);
             })(i + 1, text[i]);
         }
-    }, 1500);
 
+        setTimeout(function() {        //Auto Scrolling when autoType finished
+
+          location.href.onclick = $("#angleDown").click();
+
+        }, amntOfChars * typingSpeed + 3000);
+    }, 1500);
 }
 
 (function($) {
@@ -270,6 +275,7 @@ function autoType(elementClass, typingSpeed) {
                     window.setTimeout(function() {
                         $body.removeClass('is-resizing');
                         $window.trigger('scroll');
+
                     }, 0);
 
                 }, 100);
@@ -279,6 +285,28 @@ function autoType(elementClass, typingSpeed) {
                 $window.trigger('resize');
             });
 
+
+
+
+                  // (function(){
+                  //   $(document).on('scroll', function(){
+                  //     height = $('#work').offset();
+                  //     scroll = $(document).scrollTop();
+                  //     if (scroll >= height.top){
+                  //       $('#header a').css('color', '#000');
+                  //     }else{
+                  //       $('#header a').css('color', '#fff');
+                  //     }
+                  //     console.log(height);
+                  //   })
+                  // })(); //색바꾸기
+
+                // $(window).scroll(function(){
+                //     //이벤트 연결
+                //
+                //
+                //     console.log($(document).scrollTop());
+                //   });
 
         // float icon: go to top control
 
@@ -298,15 +326,7 @@ function autoType(elementClass, typingSpeed) {
         });
 
 
-        function scrollAuto() {
 
-            window.clearTimeout(resizeTimeout);
-            location.href = document.getElementsByTagName('a')[2].href;
-
-        }
-
-
-        window.onload = timer = setInterval(scrollAuto, 6000);
 
 
 
