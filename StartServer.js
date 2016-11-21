@@ -9,36 +9,35 @@ app.use(express.static('assets/css'));
 app.use(express.static('assets/js'));
 
 app.get('/',function(req, res){
+	var totalFileNum = 8;
 	res.writeHead(200, { 'Content-Type': 'text/html' });
-	res.write('<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>');
-	res.write('<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>');
-	res.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>');
-	res.write('<link href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" />');
 
-	fs.readFile('./assets/js/main.js', function (error, data) {
-		res.write('<script>' + data + '</script>')});
-	fs.readFile('./assets/css/main.css', function (error, data) {
-		res.write('<style>' + data + '</style>')});
-	fs.readFile('./assets/js/jquery.poptrox.min.js', function (error, data) {
-		res.write('<script>' + data + '</script>')});
-	fs.readFile('./assets/js/jquery.scrolly.min.js', function (error, data) {
-		res.write('<script>' + data + '</script>')});
-	fs.readFile('./assets/js/jquery.scrollex.min.js', function (error, data) {
-		res.write('<script>' + data + '</script>')});
-	fs.readFile('./assets/js/skel.min.js', function (error, data) {
-		res.write('<script>' + data + '</script>')});
-	fs.readFile('./assets/js/util.js', function (error, data) {
-		res.write('<script>' + data + '</script>')});
-	fs.readFile('index.html', function (error, data) {
-		res.write(data, function (error) {
-			console.log(error);
-    });
-  });
+	res.write(fs.readFileSync('index.html') +
+						'<style>' + fs.readFileSync('./assets/css/main.css') + '</style>');
+	// res.write('<link href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" />');
+	// res.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>');
+	// res.write('<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>');
+	res.write('<script>' + fs.readFileSync('./assets/js/jquery.poptrox.min.js') + '</script>');
+	res.write('<script>' + fs.readFileSync('./assets/js/jquery.scrolly.min.js') + '</script>');
+	res.write('<script>' + fs.readFileSync('./assets/js/jquery.scrollex.min.js') + '</script>');
+	res.write('<script>' + fs.readFileSync('./assets/js/skel.min.js') + '</script>');
+	res.write('<script>' + fs.readFileSync('./assets/js/util.js') + '</script>');
+	res.write('<script>' + fs.readFileSync('./assets/js/main.js') + '</script>');
+
 	res.end();
 });
 
 app.get('/plyControl.html',function(req, res){
 	fs.readFile('plyControl.html', function (error, data) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(data, function (error) {
+            console.log(error);
+        });
+    });
+});
+
+app.get('/plyControl2.html',function(req, res){
+	fs.readFile('plyControl2.html', function (error, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(data, function (error) {
             console.log(error);
@@ -52,6 +51,7 @@ app.listen(52273, function () {
 
 app.post('/upload', function(req, res, next) {
 	var form = new multiparty.Form();
+	var fileName;
 
 	// track progress
 	form.on('progress',function(byteRead,byteExpected){
@@ -65,40 +65,42 @@ app.post('/upload', function(req, res, next) {
 
 	// file upload handling
 	form.on('part',function(part){
-		var filename;
 		var size;
 		if (part.filename) {
-			filename = part.filename;
+			fileName = part.filename;
 			size = part.byteCount;
+
+			console.log("Write Streaming file : " + fileName);
+			var writeStream = fs.createWriteStream('models/ply/' + fileName);
+			writeStream.filename = fileName;
+			part.pipe(writeStream);
+
+			part.on('data',function(chunk){
+				console.log(fileName+' read ' + chunk.length + 'bytes');
+			});
+
+			part.on('end',function(){
+				console.log(fileName + ' Part read complete');
+				writeStream.end();
+			});
 		}else{
 			part.resume();
 		}
-		console.log("Write Streaming file : " + filename);
-		var writeStream = fs.createWriteStream('models/ply/' + filename);
-		writeStream.filename = filename;
-		part.pipe(writeStream);
-
-		part.on('data',function(chunk){
-			console.log(filename+' read ' + chunk.length + 'bytes');
-		});
-
-		part.on('end',function(){
-			console.log(filename + ' Part read complete');
-			writeStream.end();
-		});
 	});
 
 	// all uploads are completed
 	form.on('close',function(){
-		var sendMessage = "<script> alert('Upload complete'); ";
-		sendMessage += "redirect('/')</script>";
-
+		var sendMessage;
+		if(fileName){
+			sendMessage = "<script> alert('Upload complete'); </script>";
+		}else{
+			sendMessage = "<script> alert('file is undefined'); </script> ";
+		}
 		res.status(200).send(sendMessage);
 	});
 
 	form.parse(req);
 });
-
 
 /*  //send .ply file
     fs.readFile('example.ply', function (error, data) {
