@@ -311,13 +311,10 @@ function autoType(elementClass, typingSpeed) {
         $(function() {
           $(window).on("scroll", function() {
             if($(this).scrollTop() <= $("#work").scrollTop()) {
-              $('#header').css({"background":"#fff"});
-              $('#header').css({"color":"inherit"});
+              $('header:first').removeClass('changeColor');
 
             } else {
-              $('#header').css({"background":"#000"});
-              $('#header').css({"color":"#fff"});
-
+              $('header:first').addClass('changeColor');
             }
           });
         });
