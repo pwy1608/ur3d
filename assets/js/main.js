@@ -13,9 +13,10 @@ function autoType(elementClass, typingSpeed) {
     var text = thhis.text().trim().split('');
     var amntOfChars = text.length;
     var newString = "";
+    var j =0;
     thhis.text("|");
-
-    setTimeout(function() {
+    do{
+      setTimeout(function() {
         thhis.css("opacity", 1);
         thhis.prev().removeAttr("style");
         thhis.text("");
@@ -33,7 +34,10 @@ function autoType(elementClass, typingSpeed) {
           location.href.onclick = $("#angleDown").click();
 
         }, amntOfChars * typingSpeed + 3000);
-    }, 1500);
+      }, 1500);
+    j++;
+  }while(j==0)
+
 }
 
 (function($) {
@@ -90,6 +94,7 @@ function autoType(elementClass, typingSpeed) {
 
         // gallery.
         $window.on('load', function() {
+
             $('.gallery').poptrox({
                 baseZIndex: 10001,
                 useBodyOverflow: false,
@@ -288,28 +293,6 @@ function autoType(elementClass, typingSpeed) {
 
 
 
-                  // (function(){
-                  //   $(document).on('scroll', function(){
-                  //     height = $('#work').offset();
-                  //     scroll = $(document).scrollTop();
-                  //     if (scroll >= height.top){
-                  //       $('#header a').css('color', '#000');
-                  //     }else{
-                  //       $('#header a').css('color', '#fff');
-                  //     }
-                  //     console.log(height);
-                  //   })
-                  // })(); //색바꾸기
-
-                // $(window).scroll(function(){
-                //     //이벤트 연결
-                //
-                //
-                //     console.log($(document).scrollTop());
-                //   });
-
-        // float icon: go to top control
-
         $(function() {
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 540)
@@ -324,6 +307,21 @@ function autoType(elementClass, typingSpeed) {
                 }, 600);
             });
         });
+
+        $(function() {
+          $(window).on("scroll", function() {
+            if($(this).scrollTop() <= $("#work").scrollTop()) {
+              $('#header').css({"background":"#fff"});
+              $('#header').css({"color":"inherit"});
+
+            } else {
+              $('#header').css({"background":"#000"});
+              $('#header').css({"color":"#fff"});
+
+            }
+          });
+        });
+
 
 
 
