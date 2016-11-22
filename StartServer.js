@@ -15,14 +15,12 @@ app.get('/',function(req, res){
 	// .html and .css files send
 	res.write(fs.readFileSync('index.html'));
 	res.write('<style>' + fs.readFileSync('./assets/css/main.css') + '</style>');
-	res.write('<style>' + fs.readFileSync('./assets/css/font-awesome-4.7.0.min.css') + '</style>');
 	res.write('<link rel="SHORTCUT ICON" href="./images/favicon.ico" />');
 	res.write('<link rel="icon" href="./images/favicon.ico" type="image/ico" />');
 	res.write('<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" />');
 
 	// .js files send
 	res.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>');
-	res.write('<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>');
 	res.write('<script>' + fs.readFileSync('./assets/js/jquery.poptrox.min.js') + '</script>');
 	res.write('<script>' + fs.readFileSync('./assets/js/jquery.scrolly.min.js') + '</script>');
 	res.write('<script>' + fs.readFileSync('./assets/js/jquery.scrollex.min.js') + '</script>');
@@ -35,12 +33,18 @@ app.get('/',function(req, res){
 
 //3d viewer page
 app.get('/:id',function(req, res){
-	fs.readFile(req.params.id, function (error, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(data, function (error) {
-            console.log(error);
-        });
-    });
+	res.writeHead(200, { 'Content-Type': 'text/html' });
+	res.write(fs.readFileSync(req.params.id));
+
+	// .js files send
+	res.write('<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>');
+	res.write('<script>' + fs.readFileSync("./assets/js/PLYLoader.js") + '</script>');
+	res.write('<script>' + fs.readFileSync("./assets/js/TrackballControls.js") + '</script>');
+	res.write('<script>' + fs.readFileSync("./assets/js/Detector.js") + '</script>');
+	res.write('<script>' + fs.readFileSync("./assets/js/stats.min.js") + '</script>');
+	res.write('<script>' + fs.readFileSync("./assets/js/OrbitControls.js") + '</script>');
+
+	res.end();
 });
 
 //file uplaod
