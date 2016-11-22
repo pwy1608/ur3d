@@ -8,15 +8,21 @@ app.use(express.static('images'));
 app.use(express.static('assets/css'));
 app.use(express.static('assets/js'));
 
+//main page
 app.get('/',function(req, res){
-	var totalFileNum = 8;
 	res.writeHead(200, { 'Content-Type': 'text/html' });
 
-	res.write(fs.readFileSync('index.html') +
-						'<style>' + fs.readFileSync('./assets/css/main.css') + '</style>');
-	// res.write('<link href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" />');
-	// res.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>');
-	// res.write('<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>');
+	// .html and .css files send
+	res.write(fs.readFileSync('index.html'));
+	res.write('<style>' + fs.readFileSync('./assets/css/main.css') + '</style>');
+	res.write('<style>' + fs.readFileSync('./assets/css/font-awesome-4.7.0.min.css') + '</style>');
+	res.write('<link rel="SHORTCUT ICON" href="./images/favicon.ico" />');
+	res.write('<link rel="icon" href="./images/favicon.ico" type="image/ico" />');
+	res.write('<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" />');
+
+	// .js files send
+	res.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>');
+	res.write('<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>');
 	res.write('<script>' + fs.readFileSync('./assets/js/jquery.poptrox.min.js') + '</script>');
 	res.write('<script>' + fs.readFileSync('./assets/js/jquery.scrolly.min.js') + '</script>');
 	res.write('<script>' + fs.readFileSync('./assets/js/jquery.scrollex.min.js') + '</script>');
@@ -27,8 +33,9 @@ app.get('/',function(req, res){
 	res.end();
 });
 
-app.get('/plyControl.html',function(req, res){
-	fs.readFile('plyControl.html', function (error, data) {
+//3d viewer page
+app.get('/:id',function(req, res){
+	fs.readFile(req.params.id, function (error, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(data, function (error) {
             console.log(error);
@@ -36,19 +43,7 @@ app.get('/plyControl.html',function(req, res){
     });
 });
 
-app.get('/plyControl2.html',function(req, res){
-	fs.readFile('plyControl2.html', function (error, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(data, function (error) {
-            console.log(error);
-        });
-    });
-});
-
-app.listen(52273, function () {
-    console.log('Server Running at http://127.0.0.1:52273');
-});
-
+//file uplaod
 app.post('/upload', function(req, res, next) {
 	var form = new multiparty.Form();
 	var fileName;
@@ -100,6 +95,11 @@ app.post('/upload', function(req, res, next) {
 	});
 
 	form.parse(req);
+});
+
+//start server
+app.listen(52273, function () {
+    console.log('Server Running at http://127.0.0.1:52273');
 });
 
 /*  //send .ply file
