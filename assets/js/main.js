@@ -310,9 +310,11 @@ function autoType(elementClass, typingSpeed) {
 
         $(function() {
           $(window).on("scroll", function() {
-            if($(this).scrollTop() <= $("#work").scrollTop()) {
-              $('header:first').removeClass('changeColor');
 
+            var scrollHeight = $("#about").height();
+
+            if($(this).scrollTop() <= scrollHeight) {
+              $('header:first').removeClass('changeColor');
             } else {
               $('header:first').addClass('changeColor');
             }
