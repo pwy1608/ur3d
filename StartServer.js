@@ -3,10 +3,11 @@ var express = require('express');
 var multiparty = require('multiparty');
 var path = require('path');
 var app = express();
+var path = require('path');
 
-app.use(express.static('images'));
-app.use(express.static('assets/css'));
-app.use(express.static('assets/js'));
+app.use(express.static(path.join(__dirname ,'/images')));
+app.use(express.static(path.join(__dirname ,'/assets/css')));
+app.use(express.static(path.join(__dirname ,'/assets/js')));
 
 //main page
 app.get('/',function(req, res){
@@ -34,15 +35,15 @@ app.get('/',function(req, res){
 //3d viewer page
 app.get('/:id',function(req, res){
 	res.writeHead(200, { 'Content-Type': 'text/html' });
+	res.write('<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>');
+	res.write('<script>' + fs.readFileSync("./assets/js/stats.min.js") + '</script>');
+	res.write('<script>' + fs.readFileSync("./assets/js/Detector.js") + '</script>');
+	res.write('<script>' + fs.readFileSync("./assets/js/OrbitControls.js") + '</script>');
+	res.write('<script>' + fs.readFileSync("./assets/js/PLYLoader.js") + '</script>');
+	res.write('<script>' + fs.readFileSync("./assets/js/TrackballControls.js") + '</script>');
 	res.write(fs.readFileSync(req.params.id));
 
 	// .js files send
-	res.write('<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>');
-	res.write('<script>' + fs.readFileSync("./assets/js/PLYLoader.js") + '</script>');
-	res.write('<script>' + fs.readFileSync("./assets/js/TrackballControls.js") + '</script>');
-	res.write('<script>' + fs.readFileSync("./assets/js/Detector.js") + '</script>');
-	res.write('<script>' + fs.readFileSync("./assets/js/stats.min.js") + '</script>');
-	res.write('<script>' + fs.readFileSync("./assets/js/OrbitControls.js") + '</script>');
 
 	res.end();
 });
