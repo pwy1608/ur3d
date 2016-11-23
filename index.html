@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>UR3D - Your 3D!</title>
 	<meta charset="utf-8" />
@@ -15,10 +16,6 @@
 		<h1 id="logo"><a href="./">UR3D</a></h1>
 		<nav id="nav">
 			<ul>
-				<li><form action="/upload", method="post" enctype = 'multipart/form-data'>
-					<input type = 'file' name = 'selectFile'>
-					<input type = 'submit' name = 'upload' value = 'uploadFile'>
-					</form></li>
 				<li><a href="#about">ABOUT</a></li>
 				<li><a href="#work">3D</a></li>
 				<li><a href="#photo">GALLERY</a></li>
@@ -52,6 +49,12 @@
 			</p>
 			<p>
 				Try it! Just upload your 3d objects and watch as 3d frame-styled viewer.
+			</p>
+			<p>
+				<form action="/upload" , method="post" enctype='multipart/form-data'>
+					<input type='file' name='selectFile'>
+					<input type='submit' name='upload' value='uploadFile'>
+				</form>
 			</p>
 
 		</div>
@@ -155,11 +158,7 @@
 	<script src="./assets/js/skel.min.js"></script>
 	<script src="./assets/js/util.js"></script>
 	<script src="./assets/js/main.js"></script>
-<<<<<<< HEAD
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script> <!-- header 색 변경 -->
-=======
->>>>>>> refs/remotes/origin/master
-
+	
 </body>
 
 </html>
