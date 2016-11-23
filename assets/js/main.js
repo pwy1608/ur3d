@@ -7,37 +7,34 @@ function autoType(elementClass, typingSpeed) {
         "position": "relative",
         "display": "inline-block"
     });
-    thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+
     thhis = thhis.find(".text-js");
 
     var text = thhis.text().trim().split('');
     var amntOfChars = text.length;
     var newString = "";
-    var j =0;
+    var j = 0;
     thhis.text("|");
-    do{
-      setTimeout(function() {
-        thhis.css("opacity", 1);
-        thhis.prev().removeAttr("style");
-        thhis.text("");
-        for (var i = 0; i < amntOfChars; i++) {
-            (function(i, char) {
-                setTimeout(function() {
-                    newString += char;
-                    thhis.text(newString);
-                }, i * typingSpeed);
-            })(i + 1, text[i]);
-        }
 
-        setTimeout(function() {        //Auto Scrolling when autoType finished
-
-          location.href.onclick = $("#angleDown").click();
-
-        }, amntOfChars * typingSpeed + 3000);
-      }, 1500);
-    j++;
-  }while(j==0)
-
+    do {
+        setTimeout(function() {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function(i, char) {
+                    setTimeout(function() {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
+            }
+            setTimeout(function() { //Auto Scrolling when autoType finished
+                location.href.onclick = $("#angleDown").click();
+            }, amntOfChars * typingSpeed + 3000);
+        }, 1500);
+        j++;
+    } while (j == 0)
 }
 
 (function($) {
@@ -290,9 +287,6 @@ function autoType(elementClass, typingSpeed) {
                 $window.trigger('resize');
             });
 
-
-
-
         $(function() {
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 540)
@@ -309,23 +303,17 @@ function autoType(elementClass, typingSpeed) {
         });
 
         $(function() {
-          $(window).on("scroll", function() {
+            $(window).on("scroll", function() {
 
-            var scrollHeight = $("#about").height();
+                var scrollHeight = $("#about").height();
 
-            if($(this).scrollTop() <= scrollHeight) {
-              $('header:first').removeClass('changeColor');
-            } else {
-              $('header:first').addClass('changeColor');
-            }
-          });
+                if ($(this).scrollTop() <= scrollHeight) {
+                    $('header:first').removeClass('changeColor');
+                } else {
+                    $('header:first').addClass('changeColor');
+                }
+            });
         });
-
-
-
-
-
-
 
     });
 
