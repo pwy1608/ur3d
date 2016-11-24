@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <!-- <title>three.js - Won Young</title> -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <style>
@@ -16,11 +15,11 @@
 <body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>
-    <script src="assets/js/PLYLoader.js"></script>
-  	<script src="assets/js/TrackballControls.js"></script>
-  	<script src="assets/js/Detector.js"></script>
-  	<script src="assets/js/stats.min.js"></script>
-  	<script src="assets/js/OrbitControls.js"></script>
+    <script src="./assets/js/PLYLoader.js"></script>
+  	<script src="./assets/js/TrackballControls.js"></script>
+  	<script src="./assets/js/Detector.js"></script>
+  	<script src="./assets/js/stats.min.js"></script>
+  	<script src="./assets/js/OrbitControls.js"></script>
 
     <script>
 
@@ -49,15 +48,22 @@
             cameraTarget = new THREE.Vector3(0, -0.1, 0);
 
             scene = new THREE.Scene();
-            scene.fog = new THREE.Fog(0x72645b, 2, 15);
+            scene.fog = new THREE.Fog(0xfbfbfb, 2, 15);
 
 
             // Ground
 
+            var tLoader = new THREE.TextureLoader();
+            var planeTexture = tLoader.load('./images/marble_grid.jpg');
+            planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
+            planeTexture.repeat.set( 15, 15 );
+            planeTexture.anisotropy = 16;
+
             var plane = new THREE.Mesh(
                 new THREE.PlaneBufferGeometry(40, 40),
-                new THREE.MeshPhongMaterial({ color: 0x999999, specular: 0x101010 })
+                new THREE.MeshPhongMaterial({ color: 0x999999, specular: 0x101010, map: planeTexture })
             );
+
             plane.rotation.x = -Math.PI / 2;
             plane.position.y = -0.5;
             plane.receiveShadow = true;
@@ -72,7 +78,7 @@
 
                 geometry.computeVertexNormals();
 
-                var material = new THREE.MeshStandardMaterial({ color: 0x0055ff, shading: THREE.FlatShading });
+                var material = new THREE.MeshStandardMaterial({ color: 0xececec, shading: THREE.FlatShading });
                 var mesh = new THREE.Mesh(geometry, material);
 
                 mesh.position.x = -0.4;
@@ -85,6 +91,16 @@
                 mesh.receiveShadow = true;
 
                 scene.add(mesh);
+
+                var box = new THREE.Box3().setFromObject( mesh );
+
+                // camera.near = box.min;
+                // console.log(mesh.position);
+                console.log(Math.sqrt(Math.pow(box.min.x, 2) + Math.pow(box.min.y, 2) + Math.pow(box.min.z)));
+
+                // console.log( box.min, box.max, box.size() );
+                // console.log ( box.max );
+
 
             });
 
@@ -155,7 +171,6 @@
 
             render();
             controls.update();
-            stats.update();
 
         }
 
