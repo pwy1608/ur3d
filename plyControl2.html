@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <!-- <title>three.js - Won Young</title> -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <style>
@@ -16,11 +15,13 @@
 <body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>
-    <script src="/assets/js/PLYLoader.js"></script>
-  	<script src="/assets/js/TrackballControls.js"></script>
-  	<script src="/assets/js/Detector.js"></script>
-  	<script src="/assets/js/stats.min.js"></script>
-  	<script src="/assets/js/OrbitControls.js"></script>
+    <script src="./assets/js/PLYLoader.js"></script>
+  	<script src="./assets/js/TrackballControls.js"></script>
+  	<script src="./assets/js/Detector.js"></script>
+  	<script src="./assets/js/stats.min.js"></script>
+  	<script src="./assets/js/OrbitControls.js"></script>
+    <script src="./assets/js/DeviceOrientationControls.js"></script>
+    <script src="./assets/js/StereoEffect.js"></script>
 
     <script>
 
@@ -28,6 +29,7 @@
 
         var container, stats;
         var camera, cameraTarget, scene, renderer, controls;
+        var effect;
         var isMouseDown = false;
 
         init();
@@ -93,15 +95,30 @@
 
                 scene.add(mesh);
 
+
+
+                // Calculationg Test for Fitting on Object 3d in Perspective Camera
                 var box = new THREE.Box3().setFromObject( mesh );
 
                 // camera.near = box.min;
                 // console.log(mesh.position);
-                console.log(Math.sqrt(Math.pow(box.min.x, 2) + Math.pow(box.min.y, 2) + Math.pow(box.min.z)));
+                console.log(Math.sqrt(Math.pow(box.min.x, 2) + Math.pow(box.min.y, 2) + Math.pow(box.min.z, 2)));
 
                 // console.log( box.min, box.max, box.size() );
                 // console.log ( box.max );
+                console.log( box.size() );
 
+                var dist = Math.sqrt(Math.pow(box.min.x - camera.position.x, 2) + Math.pow(box.min.y - camera.position.y, 2) + Math.pow(box.min.z - camera.position.z, 2));
+                var vFOV = camera.fov * Math.PI / 180;
+                var height = 2 * Math.tan( vFOV / 2 ) * dist;
+                var aspect = window.width / window.height;
+                var width = height * aspect;
+                console.log(vFOV);
+                console.log(height);
+                console.log(aspect);
+                console.log(width);
+                console.log(camera.fov);
+                console.log(dist);
 
             });
 
@@ -110,7 +127,7 @@
             scene.add(new THREE.HemisphereLight(0x443333, 0x111122));
 
             addShadowedLight(1, 1, 1, 0xffffff, 1.35);
-            addShadowedLight(0.5, 1, -1, 0xffaa00, 1);
+            addShadowedLight(0.5, 1, -1, 0xffffff, 1);
 
             // renderer
 
@@ -172,7 +189,6 @@
 
             render();
             controls.update();
-            stats.update();
 
         }
 
@@ -188,7 +204,7 @@
             renderer.render(scene, camera);
 
         }
-
+            // effect = new THREE.StereoEffect(renderer);   // after, this line will be merged into 'View as Virtual Reality' Event function.
     </script>
 </body>
 </html>

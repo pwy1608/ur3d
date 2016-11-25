@@ -2767,12 +2767,23 @@
 		left: 0;
 		top: 0;
 		width: 100%;
-		background: #fff;
 		background: rgba(255, 255, 255, 0.95);
 		height: 3em;
 		line-height: 3em;
 		box-shadow: 0 0 0.15em 0 rgba(0, 0, 0, 0.1);
+		background:#fff;
+
 	}
+	.changeColor ul {
+		color:#fff;
+	}
+
+
+	#header.changeColor {
+		background:#262626;
+		color:#fff;
+	}
+
 
 
 /* 로고 */
@@ -2827,7 +2838,7 @@
 	}
 
 		#header a:hover {
-			color: #39454b;
+			color: #c5d2d9;
 			opacity: 0.3;
 		}
 
