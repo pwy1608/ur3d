@@ -95,6 +95,9 @@
 
                 scene.add(mesh);
 
+
+
+                // Calculationg Test for Fitting on Object 3d in Perspective Camera
                 var box = new THREE.Box3().setFromObject( mesh );
 
                 // camera.near = box.min;
@@ -103,7 +106,19 @@
 
                 // console.log( box.min, box.max, box.size() );
                 // console.log ( box.max );
+                console.log( box.size() );
 
+                var dist = Math.sqrt(Math.pow(box.min.x - camera.position.x, 2) + Math.pow(box.min.y - camera.position.y, 2) + Math.pow(box.min.z - camera.position.z, 2));
+                var vFOV = camera.fov * Math.PI / 180;
+                var height = 2 * Math.tan( vFOV / 2 ) * dist;
+                var aspect = window.width / window.height;
+                var width = height * aspect;
+                console.log(vFOV);
+                console.log(height);
+                console.log(aspect);
+                console.log(width);
+                console.log(camera.fov);
+                console.log(dist);
 
             });
 
