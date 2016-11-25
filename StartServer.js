@@ -16,7 +16,7 @@ app.get('/',function(req, res){
 	var fileList = getFileNames(__dirname + '/models/ply', 'ply');
 	res.writeHead(200, { 'Content-Type': 'text/html' });
 	res.write(fs.readFileSync('index.html'));
-	res.end('<span id="fileList><!--,' + fileList + ',--></span>');
+	res.end('<span id="fileList"><!--,' + fileList + ',--></span>');
 });
 
 //route 3d viewer page
