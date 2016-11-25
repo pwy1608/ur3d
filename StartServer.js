@@ -11,12 +11,21 @@ app.use('/images',express.static(path.join(__dirname ,'/images')));
 app.use('/images/logos',express.static(path.join(__dirname ,'/images/logos')));
 app.use('/models/ply',express.static(path.join(__dirname ,'/models/ply')));
 
-//route main page
-app.get('/',function(req, res){
+function routeMainPage(res, alertMessage){
 	var fileList = getFileNames(__dirname + '/models/ply', 'ply');
 	res.writeHead(200, { 'Content-Type': 'text/html' });
 	res.write(fs.readFileSync('index.html'));
-	res.end('<span id="fileList"><!--,' + fileList + ',--></span>');
+	res.write('<span id="fileList"><!--,' + fileList + ',--></span>');
+	if(alertMessage){
+		res.end("<script>alert('" + alertMessage + "');</script>");
+	}else{
+		res.end();
+	}
+}
+
+//route main page
+app.get('/',function(req, res){
+	routeMainPage(res);
 });
 
 //route 3d viewer page
@@ -26,7 +35,7 @@ app.get('/:id',function(req, res){
 });
 
 //file uplaod
-app.post('/upload', function(req, res, next) {
+app.post('/', function(req, res, next) {
 	var form = new multiparty.Form();
 	var fileName;
 
@@ -67,14 +76,8 @@ app.post('/upload', function(req, res, next) {
 
 	// all uploads are completed
 	form.on('close',function(){
-		var sendMessage;
-		if(fileName){
-			sendMessage = "<script> alert('Upload complete'); </script>";
-		}else{
-			sendMessage = "<script> alert('file is undefined'); </script> ";
-		}
-		res.writeHead(200, { 'Content-Type': 'text/html' });
-		res.end(fs.readFileSync('index.html') + sendMessage);
+		var sendMessage = fileName ? 'Upload complete' : 'file is undefined';
+		routeMainPage(res, sendMessage);
 	});
 	form.parse(req);
 });
