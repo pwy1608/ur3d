@@ -15,12 +15,14 @@
 <body>
 	<header id="header">
 		<h1 id="logo"><a href="./">UR3D</a></h1>
+
 		<nav id="nav">
 			<ul>
 				<li><a href="#about">ABOUT</a></li>
 				<li><a href="#work">3D</a></li>
 				<li><a href="#photo">GALLERY</a></li>
 				<li><a href="#contact">CONTACT</a></li>
+				<li><a href="#modal" class="btnLogin">Login</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -134,7 +136,7 @@
 		</ul>
 
 	</footer>
-	<!-- Floating Icons (top) -->
+
 	<div class="fixed-icons">
 		<ul id="float-icons" class="clearfix">
 			<li>
@@ -142,6 +144,35 @@
 			</li>
 		</ul>
 	</div>
+
+
+
+
+<section id="modal" class="popupContainer" style="display:none;">
+	<header class="popupHeader">
+		<span class="header_title">Login</span>
+		<span class="modal_close"><i class="fa fa-times"></i></span>
+	</header>
+
+    <section class="popupBody">
+			<div class="social_login">
+    <div class="clearfix">
+        <a class="social_box fb" href="#" id="fbBtn"><span class="icon">
+					<i class="fa fa-facebook"></i></span>
+					<span class="icon_title">Connect with Facebook</span></a> <br>
+
+				<a class="social_box google" href="#" id="ggBtn"><span class="icon"><i class="fa fa-google-plus"></i></span>
+					<span class="icon_title">Connect with Google</span></a>
+    	</div>
+			</div>
+    </section>
+
+</section>
+
+
+
+
+
 
 	<!-- Scripts -->
 	<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>
@@ -152,7 +183,15 @@
 	<script src="./assets/js/skel.min.js"></script>
 	<script src="./assets/js/util.js"></script>
 	<script src="./assets/js/main.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script> //header 색 변경
+
+
+	<script type="text/javascript" src="./assets/js/jquery.leanModal.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+
+
+
+
 
 </body>
 
