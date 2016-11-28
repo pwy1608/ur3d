@@ -1,5 +1,7 @@
-﻿<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- <title>three.js - Won Young</title> -->
     <meta charset="utf-8">
@@ -13,21 +15,21 @@
         }
     </style>
 </head>
+
 <body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>
     <script src="./assets/js/PLYLoader.js"></script>
-  	<script src="./assets/js/TrackballControls.js"></script>
-  	<script src="./assets/js/Detector.js"></script>
-  	<script src="./assets/js/stats.min.js"></script>
-  	<script src="./assets/js/OrbitControls.js"></script>
+    <script src="./assets/js/TrackballControls.js"></script>
+    <script src="./assets/js/Detector.js"></script>
+    <script src="./assets/js/stats.min.js"></script>
+    <script src="./assets/js/OrbitControls.js"></script>
     <script src="./assets/js/DeviceOrientationControls.js"></script>
     <script src="./assets/js/StereoEffect.js"></script>
 
     </script>
 
     <script>
-
         if (!Detector.webgl) Detector.addGetWebGLMessage();
 
         var container, stats;
@@ -62,12 +64,16 @@
             var tLoader = new THREE.TextureLoader();
             var planeTexture = tLoader.load('./images/marble_grid.jpg');
             planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
-            planeTexture.repeat.set( 15, 15 );
+            planeTexture.repeat.set(15, 15);
             planeTexture.anisotropy = 16;
 
             var plane = new THREE.Mesh(
                 new THREE.PlaneBufferGeometry(40, 40),
-                new THREE.MeshPhongMaterial({ color: 0x999999, specular: 0x101010, map: planeTexture })
+                new THREE.MeshPhongMaterial({
+                    color: 0x999999,
+                    specular: 0x101010,
+                    map: planeTexture
+                })
             );
 
             plane.rotation.x = -Math.PI / 2;
@@ -80,11 +86,14 @@
 
             var loader = new THREE.PLYLoader();
 
-            loader.load('./models/ply/vase2.ply', function (geometry) {
+            loader.load('./models/ply/vase2.ply', function(geometry) {
 
                 geometry.computeVertexNormals();
 
-                var material = new THREE.MeshStandardMaterial({ color: 0x999999, shading: THREE.FlatShading });
+                var material = new THREE.MeshStandardMaterial({
+                    color: 0x999999,
+                    shading: THREE.FlatShading
+                });
                 var mesh = new THREE.Mesh(geometry, material);
 
                 // mesh.position.x = -0.4;
@@ -109,7 +118,9 @@
 
             // renderer
 
-            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer = new THREE.WebGLRenderer({
+                antialias: true
+            });
             renderer.setClearColor(scene.fog.color);
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
@@ -120,7 +131,8 @@
             renderer.shadowMap.enabled = true;
             renderer.shadowMap.renderReverseSided = false;
 
-            container.appendChild(renderer.domElement);
+            element = renderer.domElement;
+            container.appendChild(element);
 
             // stereo effect
 
@@ -136,6 +148,7 @@
                 controls.connect();
                 controls.update();
 
+                // click 3d screen for fullscreen on mobile
                 element.addEventListener('click', fullscreen, false);
 
                 window.removeEventListener('deviceOrientation', setOrientationControls, true);
@@ -192,11 +205,6 @@
 
         function render() {
 
-            //var timer = Date.now() * 0.0005;
-
-            //camera.position.x = Math.sin(timer) * 2.5;
-            //camera.position.z = Math.cos(timer) * 2.5;
-
             camera.lookAt(cameraTarget);
 
             // Normal Camera View
@@ -207,6 +215,20 @@
 
         }
 
+        function fullscreen() {
+
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.msRequestFullscreen) {
+                container.msRequestFullscreen();
+            } else if (container.mozRequestFullScreen) {
+                container.mozRequestFullScreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+
+        }
     </script>
 </body>
+
 </html>
