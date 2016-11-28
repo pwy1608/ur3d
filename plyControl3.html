@@ -16,11 +16,15 @@
 <body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>
-    <script src="assets/js/PLYLoader.js"></script>
-  	<script src="assets/js/TrackballControls.js"></script>
-  	<script src="assets/js/Detector.js"></script>
-  	<script src="assets/js/stats.min.js"></script>
-  	<script src="assets/js/OrbitControls.js"></script>
+    <script src="./assets/js/PLYLoader.js"></script>
+  	<script src="./assets/js/TrackballControls.js"></script>
+  	<script src="./assets/js/Detector.js"></script>
+  	<script src="./assets/js/stats.min.js"></script>
+  	<script src="./assets/js/OrbitControls.js"></script>
+    <script src="./assets/js/DeviceOrientationControls.js"></script>
+    <script src="./assets/js/StereoEffect.js"></script>
+
+    </script>
 
     <script>
 
@@ -28,6 +32,7 @@
 
         var container, stats;
         var camera, cameraTarget, scene, renderer, controls;
+        var effect;
         var isMouseDown = false;
 
         init();
@@ -117,6 +122,10 @@
 
             container.appendChild(renderer.domElement);
 
+            // stereo effect
+
+            effect = new THREE.StereoEffect(renderer);
+
             // resize
 
             window.addEventListener('resize', onWindowResize, false);
@@ -174,7 +183,11 @@
 
             camera.lookAt(cameraTarget);
 
-            renderer.render(scene, camera);
+            // Normal Camera View
+            // renderer.render(scene, camera);
+
+            // Virtual Reality Compatibility
+            effect.render(scene, camera);
 
         }
 
