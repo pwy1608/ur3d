@@ -3,53 +3,39 @@ var express = require('express');
 var multiparty = require('multiparty');
 var path = require('path');
 var app = express();
-var path = require('path');
 
-app.use(express.static(path.join(__dirname ,'/images')));
-app.use(express.static(path.join(__dirname ,'/assets/css')));
-app.use(express.static(path.join(__dirname ,'/assets/js')));
+app.use('/assets/css',express.static(path.join(__dirname ,'/assets/css')));
+app.use('/assets/fonts',express.static(path.join(__dirname ,'/assets/fonts')));
+app.use('/assets/js',express.static(path.join(__dirname ,'/assets/js')));
+app.use('/images',express.static(path.join(__dirname ,'/images')));
+app.use('/images/logos',express.static(path.join(__dirname ,'/images/logos')));
+app.use('/models/ply',express.static(path.join(__dirname ,'/models/ply')));
 
-//main page
-app.get('/',function(req, res){
+function routeMainPage(res, alertMessage){
+	var fileList = getFileNames(__dirname + '/models/ply', 'ply');
 	res.writeHead(200, { 'Content-Type': 'text/html' });
-
-	// .html and .css files send
 	res.write(fs.readFileSync('index.html'));
-	res.write('<style>' + fs.readFileSync('./assets/css/main.css') + '</style>');
-	res.write('<link rel="SHORTCUT ICON" href="./images/favicon.ico" />');
-	res.write('<link rel="icon" href="./images/favicon.ico" type="image/ico" />');
-	res.write('<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" />');
+	res.write('<span id="fileList"><!--,' + fileList + ',--></span>');
+	if(alertMessage){
+		res.end("<script>alert('" + alertMessage + "');</script>");
+	}else{
+		res.end();
+	}
+}
 
-	// .js files send
-	res.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>');
-	res.write('<script>' + fs.readFileSync('./assets/js/jquery.poptrox.min.js') + '</script>');
-	res.write('<script>' + fs.readFileSync('./assets/js/jquery.scrolly.min.js') + '</script>');
-	res.write('<script>' + fs.readFileSync('./assets/js/jquery.scrollex.min.js') + '</script>');
-	res.write('<script>' + fs.readFileSync('./assets/js/skel.min.js') + '</script>');
-	res.write('<script>' + fs.readFileSync('./assets/js/util.js') + '</script>');
-	res.write('<script>' + fs.readFileSync('./assets/js/main.js') + '</script>');
-
-	res.end();
+//route main page
+app.get('/',function(req, res){
+	routeMainPage(res);
 });
 
-//3d viewer page
+//route 3d viewer page
 app.get('/:id',function(req, res){
 	res.writeHead(200, { 'Content-Type': 'text/html' });
-	res.write('<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>');
-	res.write('<script>' + fs.readFileSync("./assets/js/stats.min.js") + '</script>');
-	res.write('<script>' + fs.readFileSync("./assets/js/Detector.js") + '</script>');
-	res.write('<script>' + fs.readFileSync("./assets/js/OrbitControls.js") + '</script>');
-	res.write('<script>' + fs.readFileSync("./assets/js/PLYLoader.js") + '</script>');
-	res.write('<script>' + fs.readFileSync("./assets/js/TrackballControls.js") + '</script>');
-	res.write(fs.readFileSync(req.params.id));
-
-	// .js files send
-
-	res.end();
+	res.end(fs.readFileSync(req.params.id));
 });
 
 //file uplaod
-app.post('/upload', function(req, res, next) {
+app.post('/', function(req, res, next) {
 	var form = new multiparty.Form();
 	var fileName;
 
@@ -90,15 +76,9 @@ app.post('/upload', function(req, res, next) {
 
 	// all uploads are completed
 	form.on('close',function(){
-		var sendMessage;
-		if(fileName){
-			sendMessage = "<script> alert('Upload complete'); </script>";
-		}else{
-			sendMessage = "<script> alert('file is undefined'); </script> ";
-		}
-		res.status(200).send(sendMessage);
+		var sendMessage = fileName ? 'Upload complete' : 'file is undefined';
+		routeMainPage(res, sendMessage);
 	});
-
 	form.parse(req);
 });
 
@@ -106,6 +86,21 @@ app.post('/upload', function(req, res, next) {
 app.listen(52273, function () {
     console.log('Server Running at http://127.0.0.1:52273');
 });
+
+//get array of file names that have specified extextion in folder
+//if you want to get all of file names, use '*'
+function getFileNames(dir, ext){
+	var files = fs.readdirSync(dir);
+	if(ext != '*'){
+		for(var i in files){
+			var extension = files[i].split('.')[files[i].split('.').length-1];
+			if(extension != ext){
+				files.splice(i,1);
+			}
+		}
+	}
+	return files;
+}
 
 /*  //send .ply file
     fs.readFile('example.ply', function (error, data) {
