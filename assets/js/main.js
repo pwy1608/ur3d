@@ -64,6 +64,18 @@ function autoType(elementClass, typingSpeed) {
             }, 0);
         });
 
+
+        //get plyControl.html file according to file name
+        function getPlyControlHTML(fileName){
+          switch(fileName){
+            case 'dolphins.ply' : return 'plyControl.html';
+            case 'Lucy100k.ply' : return 'plyControl2.html';
+            case 'vase2.ply'    : return 'plyControl3.html';
+            case 'dragon.ply'   : return 'plyControl4.html';
+            default : return 'plyControl2.html'
+          }
+        }
+
         //append 3D file list
         $window.on('load', function() {
           var fileNames = document.getElementById('fileList').innerHTML.split(',');
@@ -71,7 +83,7 @@ function autoType(elementClass, typingSpeed) {
           fileNames.splice(0,1);
           var container = document.getElementById('3dContainer');
 
-          for(var i = 0; i < 2; i+=2){ //modify " i < fileNames.length "
+          for(var i = 0; i < fileNames.length; i+=2){
             // create elements of odd-numbered 3d file link
             var outerDiv = document.createElement('div');
             outerDiv.setAttribute('class','row 0% images');
@@ -79,11 +91,11 @@ function autoType(elementClass, typingSpeed) {
             innerDiv1.setAttribute('class','6u 12u(mobile)');
             var link3d1 = document.createElement('a');
             link3d1.setAttribute('class','image fit from-left');
-            link3d1.setAttribute('href','./plyControl2.html');
+            link3d1.setAttribute('href',getPlyControlHTML(fileNames[i]));
             link3d1.setAttribute('data-poptrox','iframe,1280x800');
             var thumbnail1 = document.createElement('img');
             thumbnail1.setAttribute('src','./images/logos/facebook.png');
-            thumbnail1.setAttribute('title','Sculpture: Lucy');
+            thumbnail1.setAttribute('title','Sculpture: ' + fileNames[i].split(".")[0]);
             thumbnail1.setAttribute('alt','""');
 
             //append odd-numbered elements
@@ -97,11 +109,11 @@ function autoType(elementClass, typingSpeed) {
               innerDiv2.setAttribute('class','6u 12u(mobile)');
               var link3d2 = document.createElement('a');
               link3d2.setAttribute('class','image fit from-right');
-              link3d2.setAttribute('href','./plyControl3.html');
+              link3d2.setAttribute('href',getPlyControlHTML(fileNames[i+1]));
               link3d2.setAttribute('data-poptrox','iframe,1280x800');
               var thumbnail2 = document.createElement('img');
               thumbnail2.setAttribute('src','./images/logos/mail.png');
-              thumbnail2.setAttribute('title','Sculpture: Vase');
+              thumbnail2.setAttribute('title','Sculpture: ' + fileNames[i+1].split(".")[0]);
               thumbnail2.setAttribute('alt','""');
 
               //append even-numbered elements
