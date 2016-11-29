@@ -30,7 +30,7 @@
 
         var container, stats;
         var camera, cameraTarget, scene, renderer, controls;
-        var effect;
+        var effect, element;
         var isMouseDown = false;
 
         init();
@@ -150,7 +150,8 @@
             renderer.shadowMap.enabled = true;
             renderer.shadowMap.renderReverseSided = false;
 
-            container.appendChild(renderer.domElement);
+            element = renderer.domElement;
+            container.appendChild(element);
 
             // fullscreen event
             function setOrientationControls(e) {
@@ -162,10 +163,10 @@
                 controls.connect();
                 controls.update();
 
-                renderer.domElement.addEventListener('click', fullscreen, false);
-                window.removeEventListener('deviceOrientation', setOrientationControls, true);
+                element.addEventListener('click', fullscreen, false);
+                window.removeEventListener('deviceorientation', setOrientationControls, true);
             }
-            window.addEventListener('deviceOrientation', setOrientationControls, true);
+            window.addEventListener('deviceorientation', setOrientationControls, true);
 
 
             // resize
@@ -224,7 +225,21 @@
             // renderer.render(scene, camera);
 
         }
-        // effect = new THREE.StereoEffect(renderer);   // after, this line will be merged into 'View as Virtual Reality' Event function.
+
+        function fullscreen() {
+
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.msRequestFullscreen) {
+                container.msRequestFullscreen();
+            } else if (container.mozRequestFullScreen) {
+                container.mozRequestFullScreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+
+        }
+
     </script>
 </body>
 
