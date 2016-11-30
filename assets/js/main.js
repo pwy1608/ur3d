@@ -15,6 +15,33 @@ function autoType(elementClass, typingSpeed) {
     var newString = "";
     var j = 0;
     thhis.text("|");
+<<<<<<< HEAD
+=======
+    do{
+      setTimeout(function() {
+        thhis.css("opacity", 1);
+        thhis.prev().removeAttr("style");
+        thhis.text("");
+        for (var i = 0; i < amntOfChars; i++) {
+            (function(i, char) {
+                setTimeout(function() {
+                    newString += char;
+                    thhis.text(newString);
+                }, i * typingSpeed);
+            })(i + 1, text[i]);
+
+
+        }
+
+        setTimeout(function() {        //Auto Scrolling when autoType finished
+
+          location.href.onclick = $("#angleDown").click();
+
+        }, amntOfChars * typingSpeed + 3000);
+      }, 1500);
+    j++;
+  }while(j==0)
+>>>>>>> refs/remotes/origin/dev_test
 
     do {
         setTimeout(function() {
@@ -348,6 +375,10 @@ function autoType(elementClass, typingSpeed) {
                 $window.trigger('resize');
             });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/dev_test
         $(function() {
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 540)
@@ -376,6 +407,49 @@ function autoType(elementClass, typingSpeed) {
             });
         });
 
+<<<<<<< HEAD
+=======
+
+        // making login form
+
+
+        $(".btnLogin").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+
+
+        $(function() {
+                // Calling Login Form
+                $("#fbBtn").click(function() {
+                        // $(".user_login").show();
+
+                        console.log("facebook login");
+                        return false;
+                });
+
+                // Calling Register Form
+                $("#ggBtn").click(function() {
+                  function onSignIn(googleUser){
+                    var profile = googleUser.getBasicProfile();
+                    console.log('ID: '+ profile.getId());
+                    console.log('Name: '+ profile.getName());
+                    console.log('Image URL: '+ profile.getImageUrl());
+                    console.log('Email: '+ profile.getEmail());
+                  }
+                      console.log("google+ login");
+                        return false;
+                });
+
+
+        });
+
+
+
+
+
+
+
+
+
+>>>>>>> refs/remotes/origin/dev_test
     });
 
     autoType(".type-js", 200);
