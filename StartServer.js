@@ -15,7 +15,9 @@ function routeMainPage(res, alertMessage){
 	var fileList = getFileNames(__dirname + '/models/ply', 'ply');
 	res.writeHead(200, { 'Content-Type': 'text/html' });
 	res.write(fs.readFileSync('index.html'));
-	res.write('<span id="fileList"><!--,' + fileList + ',--></span>');
+	if(fileList == []){
+		res.write('<span id="fileList"><!--,' + fileList + ',--></span>');
+	}
 	if(alertMessage){
 		res.end("<script>alert('" + alertMessage + "');</script>");
 	}else{
