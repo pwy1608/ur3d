@@ -339,7 +339,14 @@ function autoType(elementClass, typingSpeed) {
 
                 // Calling Register Form
                 $("#ggBtn").click(function() {
-                        console.log("google+ login");
+                  function onSignIn(googleUser){
+                    var profile = googleUser.getBasicProfile();
+                    console.log('ID: '+ profile.getId());
+                    console.log('Name: '+ profile.getName());
+                    console.log('Image URL: '+ profile.getImageUrl());
+                    console.log('Email: '+ profile.getEmail());
+                  }
+                      console.log("google+ login");
                         return false;
                 });
 

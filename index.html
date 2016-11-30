@@ -10,6 +10,10 @@
 	<!--Shortcut Icon, icon; good for compatibility: various browsers.-->
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" />
+
+	<meta name="google-signin-scope" content="profile email">
+	<meta name="google-signin-client_id" content="787805438494-0u31hhqkpup1sq6h7s8atdqihvin2s6v.apps.googleusercontent.com">
+
 </head>
 
 <body>
@@ -148,12 +152,12 @@
 
 
 
+
 <section id="modal" class="popupContainer" style="display:none;">
 	<header class="popupHeader">
 		<span class="header_title">Login</span>
 		<span class="modal_close"><i class="fa fa-times"></i></span>
 	</header>
-
     <section class="popupBody">
 			<div class="social_login">
     <div class="clearfix">
@@ -161,16 +165,15 @@
 					<i class="fa fa-facebook"></i></span>
 					<span class="icon_title">Connect with Facebook</span></a> <br>
 
-				<a class="social_box google" href="#" id="ggBtn"><span class="icon"><i class="fa fa-google-plus"></i></span>
+				<a class="social_box google" href="#" id="ggBtn" class="g-signin2" data-onsuccess="onSignIn">
+					<span class="icon"><i class="fa fa-google-plus"></i></span>
 					<span class="icon_title">Connect with Google</span></a>
+
     	</div>
 			</div>
     </section>
 
 </section>
-
-
-
 
 
 
@@ -189,7 +192,7 @@
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 
-
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 
 
