@@ -1,4 +1,5 @@
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900");
+@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic");
 @import url("https://fonts.googleapis.com/css?family=Libre+Baskerville:400");
 @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 @import url("http://fonts.googleapis.com/earlyaccess/kopubbatang.css");
@@ -3565,13 +3566,12 @@
 
 
 /* Importing Google Webfonts */
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic);
-
+/*
 body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
     color: #666;
-}
+}*/
 
 /* Overlay when Modal is open */
 #lean_overlay {
@@ -3647,7 +3647,6 @@ body {
         margin-bottom: 10px;
         background: #F4F4F2;
         overflow: hidden;
-
 }
 
 .social_login .icon  {
@@ -3660,7 +3659,6 @@ body {
 		 padding: 10px 20px;
 }
 
-
 .social_login .fb .icon  {
     background: #3B5998;
 
@@ -3669,7 +3667,6 @@ body {
 .social_login .google .icon  {
     background: #DD4B39;
 }
-
 
 .social_login .icon_title  {
     display: block;
@@ -3685,8 +3682,6 @@ body {
     background:  #E4E4E2;
 
 }
-
-
 
 .centeredText  {
     text-align:  center;
