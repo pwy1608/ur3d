@@ -26,6 +26,7 @@ function routeMainPage(res, alertMessage){
 //route main page
 app.get('/',function(req, res){
 	routeMainPage(res);
+	// console.log(req.session.username);
 });
 
 //route 3d viewer page
