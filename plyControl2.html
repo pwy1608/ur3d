@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        overflow: hidden;
-      }
+        body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            overflow: hidden;
+        }
     </style>
 </head>
+
 <body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>
     <script src="./assets/js/PLYLoader.js"></script>
-  	<script src="./assets/js/TrackballControls.js"></script>
-  	<script src="./assets/js/Detector.js"></script>
-  	<script src="./assets/js/stats.min.js"></script>
-  	<script src="./assets/js/OrbitControls.js"></script>
+    <script src="./assets/js/TrackballControls.js"></script>
+    <script src="./assets/js/Detector.js"></script>
+    <script src="./assets/js/stats.min.js"></script>
+    <script src="./assets/js/OrbitControls.js"></script>
     <script src="./assets/js/DeviceOrientationControls.js"></script>
     <script src="./assets/js/StereoEffect.js"></script>
 
     <script>
-
         if (!Detector.webgl) Detector.addGetWebGLMessage();
 
         var container, stats;
-        var camera, cameraTarget, scene, renderer, controls;
-        var effect;
+        var camera, cameraTarget, scene, renderer, controls, orientationControls;
+        var effect, element;
         var isMouseDown = false;
 
         init();
@@ -59,12 +60,16 @@
             var tLoader = new THREE.TextureLoader();
             var planeTexture = tLoader.load('./images/marble_grid.jpg');
             planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
-            planeTexture.repeat.set( 15, 15 );
+            planeTexture.repeat.set(15, 15);
             planeTexture.anisotropy = 16;
 
             var plane = new THREE.Mesh(
                 new THREE.PlaneBufferGeometry(40, 40),
-                new THREE.MeshPhongMaterial({ color: 0x999999, specular: 0x101010, map: planeTexture })
+                new THREE.MeshPhongMaterial({
+                    color: 0x999999,
+                    specular: 0x101010,
+                    map: planeTexture
+                })
             );
 
             plane.rotation.x = -Math.PI / 2;
@@ -77,11 +82,14 @@
 
             var loader = new THREE.PLYLoader();
 
-            loader.load('./models/ply/Lucy100k.ply', function (geometry) {
+            loader.load('./models/ply/Lucy100k.ply', function(geometry) {
 
                 geometry.computeVertexNormals();
 
-                var material = new THREE.MeshStandardMaterial({ color: 0xececec, shading: THREE.FlatShading });
+                var material = new THREE.MeshStandardMaterial({
+                    color: 0xececec,
+                    shading: THREE.FlatShading
+                });
                 var mesh = new THREE.Mesh(geometry, material);
 
                 mesh.position.x = -0.4;
@@ -98,7 +106,7 @@
 
 
                 // Calculationg Test for Fitting on Object 3d in Perspective Camera
-                var box = new THREE.Box3().setFromObject( mesh );
+                var box = new THREE.Box3().setFromObject(mesh);
 
                 // camera.near = box.min;
                 // console.log(mesh.position);
@@ -106,11 +114,11 @@
 
                 // console.log( box.min, box.max, box.size() );
                 // console.log ( box.max );
-                console.log( box.size() );
+                console.log(box.size());
 
                 var dist = Math.sqrt(Math.pow(box.min.x - camera.position.x, 2) + Math.pow(box.min.y - camera.position.y, 2) + Math.pow(box.min.z - camera.position.z, 2));
                 var vFOV = camera.fov * Math.PI / 180;
-                var height = 2 * Math.tan( vFOV / 2 ) * dist;
+                var height = 2 * Math.tan(vFOV / 2) * dist;
                 var aspect = window.width / window.height;
                 var width = height * aspect;
                 console.log(vFOV);
@@ -123,15 +131,15 @@
             });
 
             // Lights
-
             scene.add(new THREE.HemisphereLight(0x443333, 0x111122));
 
             addShadowedLight(1, 1, 1, 0xffffff, 1.35);
             addShadowedLight(0.5, 1, -1, 0xffffff, 1);
 
             // renderer
-
-            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer = new THREE.WebGLRenderer({
+                antialias: true
+            });
             renderer.setClearColor(scene.fog.color);
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
@@ -142,10 +150,26 @@
             renderer.shadowMap.enabled = true;
             renderer.shadowMap.renderReverseSided = false;
 
-            container.appendChild(renderer.domElement);
+            element = renderer.domElement;
+            container.appendChild(element);
+
+            // fullscreen event
+            function setOrientationControls(e) {
+                if (!e.alpha) {
+                    return;
+                }
+
+                orientationControls = new THREE.DeviceOrientationControls(camera, true);
+                orientationControls.connect();
+                orientationControls.update();
+
+                element.addEventListener('click', fullscreen, false);
+                window.removeEventListener('deviceorientation', setOrientationControls, true);
+            }
+            window.addEventListener('deviceorientation', setOrientationControls, true);
+
 
             // resize
-
             window.addEventListener('resize', onWindowResize, false);
 
         }
@@ -194,17 +218,29 @@
 
         function render() {
 
-            //var timer = Date.now() * 0.0005;
-
-            //camera.position.x = Math.sin(timer) * 2.5;
-            //camera.position.z = Math.cos(timer) * 2.5;
-
             camera.lookAt(cameraTarget);
 
-            renderer.render(scene, camera);
+            effect = new THREE.StereoEffect(renderer);
+            effect.render(scene, camera);
+            // renderer.render(scene, camera);
 
         }
-            // effect = new THREE.StereoEffect(renderer);   // after, this line will be merged into 'View as Virtual Reality' Event function.
+
+        function fullscreen() {
+
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.msRequestFullscreen) {
+                container.msRequestFullscreen();
+            } else if (container.mozRequestFullScreen) {
+                container.mozRequestFullScreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+
+        }
+
     </script>
 </body>
+
 </html>
