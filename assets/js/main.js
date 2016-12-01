@@ -15,8 +15,8 @@ function autoType(elementClass, typingSpeed) {
     var newString = "";
     var j = 0;
     thhis.text("|");
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
     do{
       setTimeout(function() {
         thhis.css("opacity", 1);
@@ -41,27 +41,8 @@ function autoType(elementClass, typingSpeed) {
       }, 1500);
     j++;
   }while(j==0)
->>>>>>> refs/remotes/origin/dev_test
 
-    do {
-        setTimeout(function() {
-            thhis.css("opacity", 1);
-            thhis.prev().removeAttr("style");
-            thhis.text("");
-            for (var i = 0; i < amntOfChars; i++) {
-                (function(i, char) {
-                    setTimeout(function() {
-                        newString += char;
-                        thhis.text(newString);
-                    }, i * typingSpeed);
-                })(i + 1, text[i]);
-            }
-            setTimeout(function() { //Auto Scrolling when autoType finished
-                location.href.onclick = $("#angleDown").click();
-            }, amntOfChars * typingSpeed + 3000);
-        }, 1500);
-        j++;
-    } while (j == 0)
+
 }
 
 (function($) {
@@ -376,10 +357,7 @@ function autoType(elementClass, typingSpeed) {
                 $window.trigger('resize');
             });
 
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/dev_test
         $(function() {
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 540)
@@ -407,9 +385,6 @@ function autoType(elementClass, typingSpeed) {
                 }
             });
         });
-
-<<<<<<< HEAD
-=======
 
         // making login form
 
@@ -450,7 +425,6 @@ function autoType(elementClass, typingSpeed) {
 
 
 
->>>>>>> refs/remotes/origin/dev_test
     });
 
     autoType(".type-js", 200);
