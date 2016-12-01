@@ -15,8 +15,7 @@ function autoType(elementClass, typingSpeed) {
     var newString = "";
     var j = 0;
     thhis.text("|");
-<<<<<<< HEAD
-=======
+    
     do{
       setTimeout(function() {
         thhis.css("opacity", 1);
@@ -40,8 +39,7 @@ function autoType(elementClass, typingSpeed) {
         }, amntOfChars * typingSpeed + 3000);
       }, 1500);
     j++;
-  }while(j==0)
->>>>>>> refs/remotes/origin/dev_test
+  } while (j == 0)
 
     do {
         setTimeout(function() {
@@ -134,10 +132,12 @@ function autoType(elementClass, typingSpeed) {
             if(fileNames[i+1]){
               var innerDiv2 = document.createElement('div');
               innerDiv2.setAttribute('class','6u 12u(mobile)');
+                
               var link3d2 = document.createElement('a');
               link3d2.setAttribute('class','image fit from-right');
               link3d2.setAttribute('href',getPlyControlHTML(fileNames[i+1]));
               link3d2.setAttribute('data-poptrox','iframe,1280x800');
+                
               var thumbnail2 = document.createElement('img');
               thumbnail2.setAttribute('src','./images/logos/mail.png');
               thumbnail2.setAttribute('title','Sculpture: ' + fileNames[i+1].split(".")[0]);
@@ -375,10 +375,7 @@ function autoType(elementClass, typingSpeed) {
                 $window.trigger('resize');
             });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/dev_test
+        
         $(function() {
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 540)
@@ -407,8 +404,6 @@ function autoType(elementClass, typingSpeed) {
             });
         });
 
-<<<<<<< HEAD
-=======
 
         // making login form
 
@@ -437,19 +432,7 @@ function autoType(elementClass, typingSpeed) {
                       console.log("google+ login");
                         return false;
                 });
-
-
         });
-
-
-
-
-
-
-
-
-
->>>>>>> refs/remotes/origin/dev_test
     });
 
     autoType(".type-js", 200);
