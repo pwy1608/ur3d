@@ -11,10 +11,19 @@
             border: 0;
             overflow: hidden;
         }
+
+        div {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
+
+    <div>
+        <a id="test" href="#" onclick="render2();">VR</a>
+        <a id="test2" href="#" onclick="render();">3D</a>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>
     <script src="./assets/js/PLYLoader.js"></script>
@@ -123,8 +132,8 @@
                 var width = height * aspect;
                 console.log(vFOV);
                 console.log(height);
-                console.log(aspect);
-                console.log(width);
+                // console.log(aspect);
+                // console.log(width);
                 console.log(camera.fov);
                 console.log(dist);
 
@@ -213,6 +222,15 @@
 
             render();
             controls.update();
+
+        }
+
+        function render2() {
+
+            camera.lookAt(cameraTarget);
+
+            effect = new THREE.StereoEffect(renderer);
+            renderer.render(scene, camera);
 
         }
 
