@@ -91,12 +91,15 @@ function autoType(elementClass, typingSpeed) {
                 // create elements of odd-numbered 3d file link
                 var outerDiv = document.createElement('div');
                 outerDiv.setAttribute('class','row 0% images');
+
                 var innerDiv1 = document.createElement('div');
                 innerDiv1.setAttribute('class','6u 12u(mobile)');
+
                 var link3d1 = document.createElement('a');
                 link3d1.setAttribute('class','image fit from-left');
                 link3d1.setAttribute('href',getPlyControlHTML(fileNames[i]));
                 link3d1.setAttribute('data-poptrox','iframe,1280x800');
+
                 var thumbnail1 = document.createElement('img');
                 thumbnail1.setAttribute('src','./images/logos/facebook.png');
                 thumbnail1.setAttribute('title','Sculpture: ' + fileNames[i].split(".")[0]);
