@@ -45,7 +45,7 @@
         if (!Detector.webgl) Detector.addGetWebGLMessage();
 
         var container, stats;
-        var camera, cameraTarget, scene, renderer, controls;
+        var camera, cameraTarget, scene, renderer, controls, orientationControls;
         var effect;
         var isMouseDown = false;
 
@@ -152,9 +152,9 @@
                     return;
                 }
 
-                controls = new THREE.DeviceOrientationControls(camera, true);
-                controls.connect();
-                controls.update();
+                orientationControls = new THREE.DeviceOrientationControls(camera, true);
+                orientationControls.connect();
+                orientationControls.update();
 
                 // click 3d screen for fullscreen on mobile
                 element.addEventListener('click', fullscreen, false);
