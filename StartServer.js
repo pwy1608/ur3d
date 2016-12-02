@@ -16,6 +16,7 @@ function routeMainPage(res, alertMessage){
 	res.writeHead(200, { 'Content-Type': 'text/html' });
 	res.write(fs.readFileSync('index.html'));
 	res.write('<span id="fileList"><!--,' + fileList + ',--></span>');
+
 	if(alertMessage){
 		res.end("<script>alert('" + alertMessage + "');</script>");
 	}else{

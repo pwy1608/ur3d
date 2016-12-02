@@ -1,5 +1,4 @@
 // Auto type effect at index Page
-
 function autoType(elementClass, typingSpeed) {
 
     var thhis = $(elementClass);
@@ -15,7 +14,6 @@ function autoType(elementClass, typingSpeed) {
     var newString = "";
     var j = 0;
     thhis.text("|");
-
     do {
         setTimeout(function() {
             thhis.css("opacity", 1);
@@ -65,7 +63,6 @@ function autoType(elementClass, typingSpeed) {
             }, 0);
         });
 
-
         //get plyControl.html file according to file name
         function getPlyControlHTML(fileName) {
             switch (fileName) {
@@ -84,53 +81,55 @@ function autoType(elementClass, typingSpeed) {
 
         //append 3D file list
         $window.on('load', function() {
+          if(document.getElementById('fileList')){
             var fileNames = document.getElementById('fileList').innerHTML.split(',');
-            fileNames.splice(fileNames.length - 1, 1);
-            fileNames.splice(0, 1);
+            fileNames.splice(fileNames.length-1,1);
+            fileNames.splice(0,1);
             var container = document.getElementById('3dContainer');
-
-            for (var i = 0; i < fileNames.length; i += 2) {
+            if(fileNames != ""){
+              for(var i = 0; i < fileNames.length; i+=2){
                 // create elements of odd-numbered 3d file link
                 var outerDiv = document.createElement('div');
-                outerDiv.setAttribute('class', 'row 0% images');
+                outerDiv.setAttribute('class','row 0% images');
                 var innerDiv1 = document.createElement('div');
-                innerDiv1.setAttribute('class', '6u 12u(mobile)');
+                innerDiv1.setAttribute('class','6u 12u(mobile)');
                 var link3d1 = document.createElement('a');
-                link3d1.setAttribute('class', 'image fit from-left');
-                link3d1.setAttribute('href', getPlyControlHTML(fileNames[i]));
-                link3d1.setAttribute('data-poptrox', 'iframe,1280x800');
+                link3d1.setAttribute('class','image fit from-left');
+                link3d1.setAttribute('href',getPlyControlHTML(fileNames[i]));
+                link3d1.setAttribute('data-poptrox','iframe,1280x800');
                 var thumbnail1 = document.createElement('img');
-                thumbnail1.setAttribute('src', './images/logos/facebook.png');
-                thumbnail1.setAttribute('title', 'Sculpture: ' + fileNames[i].split(".")[0]);
-                thumbnail1.setAttribute('alt', '""');
-
+                thumbnail1.setAttribute('src','./images/logos/facebook.png');
+                thumbnail1.setAttribute('title','Sculpture: ' + fileNames[i].split(".")[0]);
+                thumbnail1.setAttribute('alt','""');
                 //append odd-numbered elements
                 link3d1.appendChild(thumbnail1);
                 innerDiv1.appendChild(link3d1);
                 outerDiv.appendChild(innerDiv1);
 
                 // if even-numbered 3d file exist, create elements of its link
-                if (fileNames[i + 1]) {
-                    var innerDiv2 = document.createElement('div');
-                    innerDiv2.setAttribute('class', '6u 12u(mobile)');
+                if(fileNames[i+1]){
+                  var innerDiv2 = document.createElement('div');
+                  innerDiv2.setAttribute('class','6u 12u(mobile)');
 
-                    var link3d2 = document.createElement('a');
-                    link3d2.setAttribute('class', 'image fit from-right');
-                    link3d2.setAttribute('href', getPlyControlHTML(fileNames[i + 1]));
-                    link3d2.setAttribute('data-poptrox', 'iframe,1280x800');
+                  var link3d2 = document.createElement('a');
+                  link3d2.setAttribute('class','image fit from-right');
+                  link3d2.setAttribute('href',getPlyControlHTML(fileNames[i+1]));
+                  link3d2.setAttribute('data-poptrox','iframe,1280x800');
 
-                    var thumbnail2 = document.createElement('img');
-                    thumbnail2.setAttribute('src', './images/logos/mail.png');
-                    thumbnail2.setAttribute('title', 'Sculpture: ' + fileNames[i + 1].split(".")[0]);
-                    thumbnail2.setAttribute('alt', '""');
+                  var thumbnail2 = document.createElement('img');
+                  thumbnail2.setAttribute('src','./images/logos/mail.png');
+                  thumbnail2.setAttribute('title','Sculpture: ' + fileNames[i+1].split(".")[0]);
+                  thumbnail2.setAttribute('alt','""');
 
-                    //append even-numbered elements
-                    link3d2.appendChild(thumbnail2);
-                    innerDiv2.appendChild(link3d2);
-                    outerDiv.appendChild(innerDiv2);
+                  //append even-numbered elements
+                  link3d2.appendChild(thumbnail2);
+                  innerDiv2.appendChild(link3d2);
+                  outerDiv.appendChild(innerDiv2);
                 }
                 container.appendChild(outerDiv);
+              }
             }
+          }
         });
 
         // 터치 mode.
@@ -353,7 +352,6 @@ function autoType(elementClass, typingSpeed) {
                 $window.trigger('resize');
             });
 
-
         $(function() {
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 540)
@@ -381,8 +379,6 @@ function autoType(elementClass, typingSpeed) {
                 }
             });
         });
-
-
         // making login form
 
 
