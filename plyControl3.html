@@ -146,6 +146,8 @@
 
             effect = new THREE.StereoEffect(renderer);
 
+            console.log(camera.getEffectiveFOV());
+
             // device orientation controls
             function setOrientationControls(e) {
                 if (!e.alpha) {
