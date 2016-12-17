@@ -382,37 +382,96 @@ function autoType(elementClass, typingSpeed) {
         // making login form
 
 
-        $(".btnLogin").leanModal({
-            top: 200,
-            overlay: 0.6,
-            closeButton: ".modal_close"
-        });
+    //     $(".btnLogin").leanModal({
+    //         top: 200,
+    //         overlay: 0.6,
+    //         closeButton: ".modal_close"
+    //     });
+    //
+    //
+    //     $(function() {
+    //         // Calling Login Form
+    //         $("#fbBtn").click(function() {
+    //             // $(".user_login").show();
+    //
+    //             console.log("facebook login");
+    //             return false;
+    //         });
+    //
+    //         // Calling Register Form
+    //         $("#ggBtn").click(function() {
+    //             function onSignIn(googleUser) {
+    //                 var profile = googleUser.getBasicProfile();
+    //                 console.log('ID: ' + profile.getId());
+    //                 console.log('Name: ' + profile.getName());
+    //                 console.log('Image URL: ' + profile.getImageUrl());
+    //                 console.log('Email: ' + profile.getEmail());
+    //             }
+    //             console.log("google+ login");
+    //             return false;
+    //         });
+    //     });
+    // });
 
+    function logout()
+    {
+        gapi.auth.signOut();
+        location.reload();
+    }
+    function login()
+    {
+      var myParams = {
+        'clientid' : '787805438494-0u31hhqkpup1sq6h7s8atdqihvin2s6v.apps.googleusercontent.com',
+        'cookiepolicy' : 'single_host_origin',
+        'callback' : 'loginCallback',
+        'approvalprompt':'force',
+        'scope' : 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
+      };
+      gapi.auth.signIn(myParams);
+    }
 
-        $(function() {
-            // Calling Login Form
-            $("#fbBtn").click(function() {
-                // $(".user_login").show();
-
-                console.log("facebook login");
-                return false;
+    function loginCallback(result)
+    {
+        if(result['status']['signed_in'])
+        {
+            var request = gapi.client.plus.people.get(
+            {
+                'userId': 'me'
             });
-
-            // Calling Register Form
-            $("#ggBtn").click(function() {
-                function onSignIn(googleUser) {
-                    var profile = googleUser.getBasicProfile();
-                    console.log('ID: ' + profile.getId());
-                    console.log('Name: ' + profile.getName());
-                    console.log('Image URL: ' + profile.getImageUrl());
-                    console.log('Email: ' + profile.getEmail());
+            request.execute(function (resp)
+            {
+                var email = '';
+                if(resp['emails'])
+                {
+                    for(i = 0; i < resp['emails'].length; i++)
+                    {
+                        if(resp['emails'][i]['type'] == 'account')
+                        {
+                            email = resp['emails'][i]['value'];
+                        }
+                    }
                 }
-                console.log("google+ login");
-                return false;
-            });
-        });
-    });
 
-    autoType(".type-js", 200);
+                var str = "Name:" + resp['displayName'] + "<br>";
+                str += "Image:" + resp['image']['url'] + "<br>";
+                str += "<img src='" + resp['image']['url'] + "' /><br>";
+
+                str += "URL:" + resp['url'] + "<br>";
+                str += "Email:" + email + "<br>";
+              //  document.getElementById("profile").innerHTML = str;
+                $("#profile").html("str");
+            });
+
+        }
+
+    }
+    function onLoadCallback()
+    {
+        gapi.client.setApiKey('AIzaSyBV0brZo8-Z3ty4RIuzlVdOEWOQhDPuq4Y');
+        gapi.client.load('plus', 'v1',function(){});
+    }
+
+  });
+  autoType(".type-js", 200);
 
 })(jQuery);

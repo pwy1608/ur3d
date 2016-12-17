@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="./assets/css/main.css" />
 	<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" />
 
-	<meta name="google-signin-scope" content="profile email">
-	<meta name="google-signin-client_id" content="787805438494-0u31hhqkpup1sq6h7s8atdqihvin2s6v.apps.googleusercontent.com">
+	<!-- <meta name="google-signin-scope" content="profile email">
+	<meta name="google-signin-client_id" content="787805438494-0u31hhqkpup1sq6h7s8atdqihvin2s6v.apps.googleusercontent.com"> -->
 
 </head>
 
@@ -25,7 +25,11 @@
 				<li><a href="#work">3D</a></li>
 				<li><a href="#photo">GALLERY</a></li>
 				<li><a href="#contact">CONTACT</a></li>
-				<li><a href="#modal" class="btnLogin">Login</a></li>
+				<li><a value="Login" onclick="login()" />login</a></li>
+				<li><a value="Logout" onclick="logout()" />logout</a></li>
+
+				<!-- <li><a href="#modal" class="btnLogin">Login</a></li> -->
+
 			</ul>
 		</nav>
 	</header>
@@ -153,7 +157,7 @@
 		</ul>
 	</div>
 
-	<section id="modal" class="popupContainer" style="display:none;">
+	<!-- <section id="modal" class="popupContainer" style="display:none;">
 		<header class="popupHeader">
 			<span class="header_title">Login</span>
 			<span class="modal_close"><i class="fa fa-times"></i></span>
@@ -175,7 +179,8 @@
 			</div>
 		</section>
 
-	</section>
+	</section> -->
+
 
 	<!-- Scripts -->
 	<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>
@@ -186,8 +191,18 @@
 	<script src="./assets/js/skel.min.js"></script>
 	<script src="./assets/js/util.js"></script>
 	<script src="./assets/js/main.js"></script>
+
 	<script src="./assets/js/jquery.leanModal.min.js"></script>
+
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+	<script type="text/javascript">
+	      (function() {
+	       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	       po.src = 'https://apis.google.com/js/client.js?onload=onLoadCallback';
+	       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	     })();
+	</script>
 
 </body>
 
