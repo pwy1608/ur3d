@@ -101,7 +101,7 @@ function autoType(elementClass, typingSpeed) {
                         link3d1.setAttribute('data-poptrox', 'iframe,1280x800');
 
                         var thumbnail1 = document.createElement('img');
-                        thumbnail1.setAttribute('src', './images/logos/facebook.png');
+                        thumbnail1.setAttribute('src', './images/logos/thumb1.jpg');
                         thumbnail1.setAttribute('title', 'Sculpture: ' + fileNames[i].split(".")[0]);
                         thumbnail1.setAttribute('alt', '""');
                         //append odd-numbered elements
@@ -120,7 +120,7 @@ function autoType(elementClass, typingSpeed) {
                             link3d2.setAttribute('data-poptrox', 'iframe,1280x800');
 
                             var thumbnail2 = document.createElement('img');
-                            thumbnail2.setAttribute('src', './images/logos/mail.png');
+                            thumbnail2.setAttribute('src', './images/logos/thumb2.jpg');
                             thumbnail2.setAttribute('title', 'Sculpture: ' + fileNames[i + 1].split(".")[0]);
                             thumbnail2.setAttribute('alt', '""');
 
