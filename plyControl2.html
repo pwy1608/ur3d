@@ -91,7 +91,7 @@
 
             var loader = new THREE.PLYLoader();
 
-            loader.load('./models/ply/Lucy100k.ply', function(geometry) {
+            loader.load('./models/ply/Statue.ply', function(geometry) {
 
                 geometry.computeVertexNormals();
 
@@ -136,7 +136,7 @@
                 // console.log(width);
                 console.log(camera.fov);
                 console.log(dist);
-                console.log(camera.getEffectiveFOV())
+                console.log(camera.getEffectiveFOV());
 
             });
 

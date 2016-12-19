@@ -66,13 +66,13 @@ function autoType(elementClass, typingSpeed) {
         //get plyControl.html file according to file name
         function getPlyControlHTML(fileName) {
             switch (fileName) {
-                case 'dolphins.ply':
+                case 'Dolphins.ply':
                     return 'plyControl.html';
-                case 'Lucy100k.ply':
+                case 'Statue.ply':
                     return 'plyControl2.html';
-                case 'vase2.ply':
+                case 'Vase.ply':
                     return 'plyControl3.html';
-                case 'dragon.ply':
+                case 'Dragon.ply':
                     return 'plyControl4.html';
                 default:
                     return 'plyControl2.html'
@@ -81,55 +81,58 @@ function autoType(elementClass, typingSpeed) {
 
         //append 3D file list
         $window.on('load', function() {
-          if(document.getElementById('fileList')){
-            var fileNames = document.getElementById('fileList').innerHTML.split(',');
-            fileNames.splice(fileNames.length-1,1);
-            fileNames.splice(0,1);
-            var container = document.getElementById('3dContainer');
-            if(fileNames != ""){
-              for(var i = 0; i < fileNames.length; i+=2){
-                // create elements of odd-numbered 3d file link
-                var outerDiv = document.createElement('div');
-                outerDiv.setAttribute('class','row 0% images');
-                var innerDiv1 = document.createElement('div');
-                innerDiv1.setAttribute('class','6u 12u(mobile)');
-                var link3d1 = document.createElement('a');
-                link3d1.setAttribute('class','image fit from-left');
-                link3d1.setAttribute('href',getPlyControlHTML(fileNames[i]));
-                link3d1.setAttribute('data-poptrox','iframe,1280x800');
-                var thumbnail1 = document.createElement('img');
-                thumbnail1.setAttribute('src','./images/logos/facebook.png');
-                thumbnail1.setAttribute('title','Sculpture: ' + fileNames[i].split(".")[0]);
-                thumbnail1.setAttribute('alt','""');
-                //append odd-numbered elements
-                link3d1.appendChild(thumbnail1);
-                innerDiv1.appendChild(link3d1);
-                outerDiv.appendChild(innerDiv1);
+            if (document.getElementById('fileList')) {
+                var fileNames = document.getElementById('fileList').innerHTML.split(',');
+                fileNames.splice(fileNames.length - 1, 1);
+                fileNames.splice(0, 1);
+                var container = document.getElementById('3dContainer');
+                if (fileNames != "") {
+                    for (var i = 0; i < fileNames.length; i += 2) {
+                        // create elements of odd-numbered 3d file link
+                        var outerDiv = document.createElement('div');
+                        outerDiv.setAttribute('class', 'row 0% images');
 
-                // if even-numbered 3d file exist, create elements of its link
-                if(fileNames[i+1]){
-                  var innerDiv2 = document.createElement('div');
-                  innerDiv2.setAttribute('class','6u 12u(mobile)');
+                        var innerDiv1 = document.createElement('div');
+                        innerDiv1.setAttribute('class', '6u 12u(mobile)');
 
-                  var link3d2 = document.createElement('a');
-                  link3d2.setAttribute('class','image fit from-right');
-                  link3d2.setAttribute('href',getPlyControlHTML(fileNames[i+1]));
-                  link3d2.setAttribute('data-poptrox','iframe,1280x800');
+                        var link3d1 = document.createElement('a');
+                        link3d1.setAttribute('class', 'image fit from-left');
+                        link3d1.setAttribute('href', getPlyControlHTML(fileNames[i]));
+                        link3d1.setAttribute('data-poptrox', 'iframe,1280x800');
 
-                  var thumbnail2 = document.createElement('img');
-                  thumbnail2.setAttribute('src','./images/logos/mail.png');
-                  thumbnail2.setAttribute('title','Sculpture: ' + fileNames[i+1].split(".")[0]);
-                  thumbnail2.setAttribute('alt','""');
+                        var thumbnail1 = document.createElement('img');
+                        thumbnail1.setAttribute('src', './images/logos/facebook.png');
+                        thumbnail1.setAttribute('title', 'Sculpture: ' + fileNames[i].split(".")[0]);
+                        thumbnail1.setAttribute('alt', '""');
+                        //append odd-numbered elements
+                        link3d1.appendChild(thumbnail1);
+                        innerDiv1.appendChild(link3d1);
+                        outerDiv.appendChild(innerDiv1);
 
-                  //append even-numbered elements
-                  link3d2.appendChild(thumbnail2);
-                  innerDiv2.appendChild(link3d2);
-                  outerDiv.appendChild(innerDiv2);
+                        // if even-numbered 3d file exist, create elements of its link
+                        if (fileNames[i + 1]) {
+                            var innerDiv2 = document.createElement('div');
+                            innerDiv2.setAttribute('class', '6u 12u(mobile)');
+
+                            var link3d2 = document.createElement('a');
+                            link3d2.setAttribute('class', 'image fit from-right');
+                            link3d2.setAttribute('href', getPlyControlHTML(fileNames[i + 1]));
+                            link3d2.setAttribute('data-poptrox', 'iframe,1280x800');
+
+                            var thumbnail2 = document.createElement('img');
+                            thumbnail2.setAttribute('src', './images/logos/mail.png');
+                            thumbnail2.setAttribute('title', 'Sculpture: ' + fileNames[i + 1].split(".")[0]);
+                            thumbnail2.setAttribute('alt', '""');
+
+                            //append even-numbered elements
+                            link3d2.appendChild(thumbnail2);
+                            innerDiv2.appendChild(link3d2);
+                            outerDiv.appendChild(innerDiv2);
+                        }
+                        container.appendChild(outerDiv);
+                    }
                 }
-                container.appendChild(outerDiv);
-              }
             }
-          }
         });
 
         // 터치 mode.
@@ -379,99 +382,8 @@ function autoType(elementClass, typingSpeed) {
                 }
             });
         });
-        // making login form
 
-
-    //     $(".btnLogin").leanModal({
-    //         top: 200,
-    //         overlay: 0.6,
-    //         closeButton: ".modal_close"
-    //     });
-    //
-    //
-    //     $(function() {
-    //         // Calling Login Form
-    //         $("#fbBtn").click(function() {
-    //             // $(".user_login").show();
-    //
-    //             console.log("facebook login");
-    //             return false;
-    //         });
-    //
-    //         // Calling Register Form
-    //         $("#ggBtn").click(function() {
-    //             function onSignIn(googleUser) {
-    //                 var profile = googleUser.getBasicProfile();
-    //                 console.log('ID: ' + profile.getId());
-    //                 console.log('Name: ' + profile.getName());
-    //                 console.log('Image URL: ' + profile.getImageUrl());
-    //                 console.log('Email: ' + profile.getEmail());
-    //             }
-    //             console.log("google+ login");
-    //             return false;
-    //         });
-    //     });
-    // });
-
-    function logout()
-    {
-        gapi.auth.signOut();
-        location.reload();
-    }
-    function login()
-    {
-      var myParams = {
-        'clientid' : '787805438494-0u31hhqkpup1sq6h7s8atdqihvin2s6v.apps.googleusercontent.com',
-        'cookiepolicy' : 'single_host_origin',
-        'callback' : 'loginCallback',
-        'approvalprompt':'force',
-        'scope' : 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
-      };
-      gapi.auth.signIn(myParams);
-    }
-
-    function loginCallback(result)
-    {
-        if(result['status']['signed_in'])
-        {
-            var request = gapi.client.plus.people.get(
-            {
-                'userId': 'me'
-            });
-            request.execute(function (resp)
-            {
-                var email = '';
-                if(resp['emails'])
-                {
-                    for(i = 0; i < resp['emails'].length; i++)
-                    {
-                        if(resp['emails'][i]['type'] == 'account')
-                        {
-                            email = resp['emails'][i]['value'];
-                        }
-                    }
-                }
-
-                var str = "Name:" + resp['displayName'] + "<br>";
-                str += "Image:" + resp['image']['url'] + "<br>";
-                str += "<img src='" + resp['image']['url'] + "' /><br>";
-
-                str += "URL:" + resp['url'] + "<br>";
-                str += "Email:" + email + "<br>";
-              //  document.getElementById("profile").innerHTML = str;
-                $("#profile").html("str");
-            });
-
-        }
-
-    }
-    function onLoadCallback()
-    {
-        gapi.client.setApiKey('AIzaSyBV0brZo8-Z3ty4RIuzlVdOEWOQhDPuq4Y');
-        gapi.client.load('plus', 'v1',function(){});
-    }
-
-  });
-  autoType(".type-js", 200);
+    });
+    autoType(".type-js", 200);
 
 })(jQuery);
