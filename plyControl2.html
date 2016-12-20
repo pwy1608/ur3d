@@ -12,18 +12,18 @@
             overflow: hidden;
         }
 
-        div {
+        /*div {
             text-align: center;
-        }
+        }*/
     </style>
 </head>
 
 <body>
-
+<!--
     <div>
         <a id="test" href="#" onclick="render2();">VR</a>
         <a id="test2" href="#" onclick="render();">3D</a>
-    </div>
+    </div> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>
     <script src="./assets/js/PLYLoader.js"></script>
@@ -223,15 +223,6 @@
 
             render();
             controls.update();
-
-        }
-
-        function render2() {
-
-            camera.lookAt(cameraTarget);
-
-            effect = new THREE.StereoEffect(renderer);
-            renderer.render(scene, camera);
 
         }
 
